@@ -152,6 +152,33 @@ This established that the selected fingerprints are not isolated one-point artif
 
 ---
 
+## Representative Figures
+
+### Corrected Tier-0 mechanism fingerprint summary
+
+This figure summarizes how different DFN-level perturbations project into ECM-level observables.
+
+![Corrected Tier-0 mechanism fingerprint summary](docs/figures/corrected_tier0_mechanism_fingerprint_summary.png)
+
+---
+
+### SOC-resolved Ri-sensitive fingerprints
+
+This figure shows how Ri-sensitive perturbations behave across SOC. The contact-resistance fingerprint remains SOC-invariant, while exchange-current perturbations remain sign-stable with mechanism-specific magnitude.
+
+![SOC-resolved Ri-sensitive fingerprints](docs/figures/multi_soc_Ri_sensitive_fingerprints.png)
+
+---
+
+### SOC-resolved diffusion-sensitive tau2 fingerprint
+
+This figure shows that positive solid diffusivity reduction produces a tau2 increase across all SOC points, but the magnitude is state-dependent.
+
+![SOC-resolved diffusion-sensitive tau2 fingerprint](docs/figures/multi_soc_Ds_p_tau2_fingerprint.png)
+
+
+---
+
 ### 3. Temperature Entry Audit
 
 The Chen2020 parameter set uses:
