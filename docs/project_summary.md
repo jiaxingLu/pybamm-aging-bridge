@@ -1,0 +1,211 @@
+# Project Summary — PyBaMM Aging Bridge
+
+## One-line description
+
+PyBaMM Aging Bridge is a mechanism-to-observable modeling project that maps DFN-level electrochemical perturbations to ECM-level HPPC diagnostic fingerprints.
+
+## Research motivation
+
+Battery aging is difficult to observe directly in practical systems. In engineering applications, aging-related changes are usually inferred from measurable signals such as pulse resistance, voltage relaxation, capacity, energy efficiency, or temperature-dependent behavior.
+
+A central ambiguity is that different degradation mechanisms can produce similar observable symptoms. For example, an increase in short-window resistance may result from charge-transfer degradation, contact resistance growth, temperature effects, or other coupled mechanisms.
+
+This project addresses that ambiguity by asking:
+
+    Which electrochemical perturbation produces which observable diagnostic fingerprint?
+
+## Core methodology
+
+The project follows a mechanism-to-observable workflow:
+
+    DFN-level physical perturbation
+    -> simulated HPPC response
+    -> CDEFG / Ri / relaxation extraction
+    -> ECM-level observable fingerprint
+    -> diagnostic interpretation rule
+
+Instead of assuming an SOH value directly, the project perturbs interpretable physical pathways in a PyBaMM DFN model and audits how these perturbations appear in engineering-level observables.
+
+## Model and protocol
+
+Current baseline configuration:
+
+- Model: PyBaMM DFN
+- Parameter set: Chen2020
+- Thermal setting: default isothermal
+- Default temperature: 25 °C
+- Pulse protocol: 1C discharge pulse for 10 s
+- Relaxation: 600 s
+- SOC points: 10%, 30%, 50%, 70%, 90%
+
+The analysis explicitly tracks PyBaMM current convention:
+
+    +I = discharge
+    -I = charge
+
+## Observable extraction
+
+The project uses a CDEFG-style HPPC extraction workflow.
+
+For each pulse:
+
+| Point | Meaning |
+|---|---|
+| C | pre-pulse baseline voltage |
+| D | short-time voltage response after pulse start |
+| E | end-of-pulse voltage |
+| F | short-time recovery after current interruption |
+| G | long-time recovered voltage |
+
+Extracted observables:
+
+- Ri_CD
+- Ri_EF
+- tau1 / tau2 from biexponential relaxation fitting
+- 60 s and 300 s tau descriptors
+- relaxation morphology
+- contact overpotential
+- normalized remaining polarization
+
+Important methodological point:
+
+    tau1 / tau2 are observation-window-dependent descriptors,
+    not unique physical constants.
+
+## Perturbation families
+
+The current study focuses on four controlled perturbation families:
+
+| Family | Perturbation | Physical meaning |
+|---|---|---|
+| Ds_p | positive particle diffusivity decrease | positive solid diffusion limitation |
+| j0_n | negative exchange-current density decrease | negative-electrode charge-transfer degradation |
+| j0_p | positive exchange-current density decrease | positive-electrode kinetic degradation |
+| contact_R | contact resistance increase | pure ohmic / external contact resistance |
+
+## Main findings
+
+### 1. Diffusion-sensitive fingerprint
+
+Reducing positive particle diffusivity produces:
+
+- tau2 increase,
+- slower relaxation recovery,
+- nearly unchanged short-window Ri.
+
+Interpretation:
+
+    tau2 increases while Ri remains nearly unchanged
+    -> diffusion-sensitive relaxation limitation
+
+This fingerprint is sign-stable across SOC, but its magnitude is SOC-dependent.
+
+### 2. Negative-electrode kinetic fingerprint
+
+Reducing negative electrode exchange-current density produces:
+
+- strong Ri increase,
+- nearly unchanged tau2.
+
+Interpretation:
+
+    Ri increases strongly while tau2 remains close to baseline
+    -> negative-electrode charge-transfer / kinetic limitation
+
+This fingerprint is sign-stable and magnitude-stable across the tested SOC range.
+
+### 3. Positive-electrode kinetic fingerprint
+
+Reducing positive electrode exchange-current density produces:
+
+- moderate Ri increase,
+- nearly unchanged tau2.
+
+Interpretation:
+
+    Ri increases moderately while tau2 remains close to baseline
+    -> positive-electrode kinetic limitation
+
+This fingerprint is weaker than the negative-electrode kinetic fingerprint under the present protocol.
+
+### 4. Contact-resistance fingerprint
+
+Increasing contact resistance produces:
+
+- exact Ri increase equal to the imposed contact resistance,
+- contact overpotential consistent with I·R,
+- unchanged tau descriptors.
+
+Interpretation:
+
+    constant Ri offset across SOC + I·R consistency + unchanged tau
+    -> pure ohmic/contact resistance contribution
+
+This fingerprint is SOC-invariant under the present protocol.
+
+## Temperature audit
+
+A small 10 / 25 / 45 °C audit showed that temperature is an active operating-condition layer.
+
+Under the current Chen2020 isothermal workflow:
+
+- Ri changes strongly with temperature,
+- tau2 descriptors remain nearly unchanged,
+- temperature enters primarily through exchange-current density and electrolyte transport functions.
+
+Therefore, temperature effects must be separated from degradation-mechanism perturbations in future scans.
+
+## Key methodological result
+
+Mechanism fingerprints are not simply present or absent. They have two layers:
+
+1. Sign stability:
+   whether an observable changes in the same direction across SOC.
+
+2. Magnitude stability:
+   whether the size of that change remains similar across SOC.
+
+For example:
+
+- contact resistance is both sign-stable and magnitude-stable;
+- j0_n is sign-stable and relatively magnitude-stable;
+- Ds_p is sign-stable but magnitude state-dependent.
+
+## Interpretation boundary
+
+This project does not yet claim:
+
+- full aging simulation,
+- SOH trajectory prediction,
+- validated SEI or plating behavior,
+- transferability across chemistries,
+- thermal-aging coupling,
+- experimental validation of all simulated fingerprints.
+
+The current conclusions are bounded by:
+
+- Chen2020 DFN,
+- selected perturbation families,
+- default isothermal 25 °C unless otherwise stated,
+- HPPC-style 1C 10 s discharge pulse,
+- 600 s relaxation,
+- selected SOC points.
+
+## Current status
+
+Completed:
+
+- baseline DFN HPPC extraction chain,
+- corrected Tier-0 fingerprint scan,
+- SOC=50% perturbation-level scan,
+- temperature entry audit,
+- multi-SOC fingerprint stability scan,
+- consolidated fingerprint map,
+- README with representative figures and tables.
+
+Next possible directions:
+
+1. multi-temperature representative fingerprint checks,
+2. SEI-only aging branch,
+3. plating-stress isolation branch,
+4. comparison with experimental HPPC aging observables.
