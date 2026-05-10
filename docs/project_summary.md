@@ -171,6 +171,34 @@ For example:
 - j0_n is sign-stable and relatively magnitude-stable;
 - Ds_p is sign-stable but magnitude state-dependent.
 
+
+## Temperature-representative fingerprint check
+
+A representative temperature scan was performed at SOC = 50% using:
+
+- 10 °C
+- 25 °C
+- 45 °C
+
+The tested perturbation cases were:
+
+- baseline
+- Ds_p_x0p5
+- j0_n_x0p5
+- j0_p_x0p5
+- contact_R_5mOhm
+
+Main observations:
+
+1. Baseline Ri decreases strongly as temperature increases.
+2. Ds_p_x0p5 remains identifiable through tau2 increase across all tested temperatures.
+3. j0_n_x0p5 remains identifiable through Ri increase, with mild magnitude variation.
+4. j0_p_x0p5 remains sign-stable but weakens at higher temperature.
+5. contact_R_5mOhm remains exactly temperature-invariant, with +5 mΩ Ri shift and 25 mV contact overpotential.
+
+This extends the fingerprint framework from SOC-aware interpretation to SOC- and temperature-aware diagnostic interpretation.
+
+
 ## Interpretation boundary
 
 This project does not yet claim:

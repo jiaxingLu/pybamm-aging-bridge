@@ -208,6 +208,28 @@ This means temperature must be treated as an independent operating-condition lay
 
 ---
 
+### 3b. Temperature-Representative Fingerprint Check
+
+A representative scan at SOC = 50% tested whether mechanism fingerprints remain identifiable across:
+
+- 10 °C
+- 25 °C
+- 45 °C
+
+Main findings:
+
+- `Ds_p ×0.5` remains identifiable through `tau2` increase across all tested temperatures.
+- `j0_n ×0.5` remains identifiable through Ri increase with mild magnitude variation.
+- `j0_p ×0.5` remains identifiable but weakens at higher temperature.
+- `contact_R = 5 mΩ` remains temperature-invariant, producing exactly +5 mΩ Ri shift and 25 mV contact overpotential.
+
+![Temperature-resolved Ri-sensitive fingerprints](docs/figures/temperature_resolved_Ri_sensitive_fingerprints.png)
+
+![Temperature-resolved diffusion-sensitive tau2 fingerprint](docs/figures/temperature_resolved_Ds_p_tau2_fingerprint.png)
+
+
+---
+
 ### 4. Multi-SOC Fingerprint Stability
 
 A multi-SOC scan across 10%, 30%, 50%, 70%, and 90% SOC showed that fingerprint stability has two levels:

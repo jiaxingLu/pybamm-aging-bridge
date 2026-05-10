@@ -1,0 +1,6 @@
+fingerprint_family,primary_observation,temperature_stability,interpretation
+baseline,Ri decreases strongly as temperature increases,temperature-dependent,same-temperature baseline comparison is mandatory
+Ds_p_x0p5,tau2 increases at all tested temperatures,sign-stable and magnitude relatively stable,diffusion-sensitive relaxation fingerprint remains identifiable across 10–45 °C
+j0_n_x0p5,Ri increases at all tested temperatures,"sign-stable, mild magnitude variation",negative-electrode kinetic fingerprint remains identifiable across temperature
+j0_p_x0p5,Ri increases at all tested temperatures but weakens at higher temperature,sign-stable but magnitude temperature-dependent,positive-electrode kinetic fingerprint remains identifiable but becomes weaker at high temperature
+contact_R_5mOhm,Ri increases by exactly 5 mΩ and contact overpotential remains 25 mV,temperature-invariant,pure ohmic/contact fingerprint is independent of temperature under this isothermal protocol
