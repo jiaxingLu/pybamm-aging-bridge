@@ -1,0 +1,5 @@
+mechanism_family,main_metric,mean_delta,min_delta,max_delta,cv_pct,sign_stable,evidence_summary
+Ds_p,biexp60_tau2_s_delta,6.259297650595572,2.307871354642444,12.923765717756469,59.19796593756445,True,tau2 increases at all SOC points; magnitude strongly SOC-dependent
+j0_n,Ri_CD_mohm_delta,6.847261687780505,6.7607610634682125,6.9678440921104645,1.1206842189362765,True,Ri increases at all SOC points with low magnitude variation
+j0_p,Ri_CD_mohm_delta,2.5511058293636237,2.4076803673628966,2.868731766590745,6.616949279012056,True,"Ri increases at all SOC points, weaker than j0_n"
+contact_R,Ri_CD_mohm_delta,4.999999999999983,4.999999999999893,5.000000000000075,1.1460737156174564e-12,True,Ri increases by exactly 5 mΩ at all SOC points

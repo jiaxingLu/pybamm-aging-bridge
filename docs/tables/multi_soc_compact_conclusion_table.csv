@@ -1,0 +1,6 @@
+fingerprint_family,primary_observation,soc_stability,interpretation
+baseline,Ri and tau2 are SOC-dependent even without perturbation,not constant,same-SOC baseline comparison is mandatory
+Ds_p_x0p5,tau2 increases at all SOC points,sign-stable but magnitude state-dependent,"diffusion-sensitive relaxation fingerprint persists, but strength depends on SOC"
+j0_n_x0p5,Ri increases at all SOC points,sign-stable and magnitude relatively stable,negative-electrode kinetic fingerprint is robust across tested SOC range
+j0_p_x0p5,"Ri increases at all SOC points, weaker than j0_n",sign-stable and magnitude relatively stable,positive-electrode kinetic fingerprint is observable but weaker
+contact_R_5mOhm,Ri increases by exactly 5 mΩ at all SOC points,SOC-invariant,pure ohmic/contact fingerprint is independent of SOC under this protocol
