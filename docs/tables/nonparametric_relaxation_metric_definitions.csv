@@ -1,0 +1,11 @@
+metric,definition,unit,source_segment,interpretation
+relax_U0_V,First voltage point after HPPC pulse current interruption,V,post-pulse relaxation,initial recovery voltage after load removal
+relax_Uinf_V,Median voltage over the final 50 s of the 600 s relaxation window,V,late relaxation tail,finite-window approximation of relaxed voltage
+recovery_amplitude_V,relax_Uinf_V - relax_U0_V,V,post-pulse relaxation,voltage recovery amplitude after pulse interruption
+recovery_fraction,(U(t) - U0) / (Uinf - U0),-,post-pulse relaxation,normalized voltage recovery progress
+remaining_fraction,(Uinf - U(t)) / (Uinf - U0),-,post-pulse relaxation,normalized remaining polarization
+tau_FG_eff_s,"First time after pulse end when recovery_fraction reaches 1 - exp(-1), approximately 63.2%",s,post-pulse relaxation,non-parametric effective recovery time constant
+t95_s,First time after pulse end when recovery_fraction reaches 0.95,s,post-pulse relaxation,time required to reach 95% voltage recovery
+t99_s,First time after pulse end when recovery_fraction reaches 0.99,s,post-pulse relaxation,time required to reach 99% voltage recovery
+tau_tail_s,Effective time constant from semilog slope of remaining_fraction between 300 s and 550 s,s,late relaxation tail,late-tail relaxation descriptor
+recovery_area_s,Trapezoidal integral of remaining_fraction over the valid relaxation window,s,post-pulse relaxation,integrated remaining polarization over time

@@ -199,6 +199,59 @@ Main observations:
 This extends the fingerprint framework from SOC-aware interpretation to SOC- and temperature-aware diagnostic interpretation.
 
 
+
+## SEI-only Metric Registry v0.1 update
+
+The SEI-only branch has been extended from an internal-degradation and Ri/tau audit into a broader Metric Registry v0.1 framework.
+
+Implemented diagnostic layers include:
+
+1. degradation-state variables,
+2. external capacity RPT,
+3. multi-window resistance,
+4. fitted tau1/tau2 descriptors,
+5. non-parametric relaxation descriptors,
+6. voltage-recovery / pseudo-OCV feasibility metrics.
+
+The following layers are registered but deferred:
+
+- strict OCV-SOC curve,
+- ICA / DVA features,
+- fixed-endpoint pseudo-OCV after same Ukl,
+- thermal / heat-generation indicators.
+
+### Main SEI-only result
+
+Under the current proof-of-concept protocol, SEI-only aging is classified as:
+
+    capacity / LLI dominant mixed signature
+
+The strongest evidence comes from:
+
+- monotonic SEI thickness growth,
+- monotonic LLI growth,
+- monotonic side-reaction capacity loss,
+- external capacity RPT fade.
+
+At the final 20-cycle checkpoint, the capacity RPT showed:
+
+- capacity retention of approximately 99.746%,
+- capacity fade of approximately 0.254%,
+- capacity loss of approximately 0.0128 Ah relative to the 0-cycle RPT.
+
+The multi-window resistance layer showed weak but monotonic drift, with final changes on the order of approximately 0.2–0.3 mΩ.
+
+The fitted tau1/tau2 and non-parametric relaxation descriptors were successfully extracted, but they remained secondary audit layers rather than dominant fingerprints.
+
+### Voltage-recovery and OCV boundary
+
+Finite-rest HPPC recovery descriptors, such as Uinf and recovery amplitude, were extracted as feasibility-level voltage-recovery features.
+
+These are not strict OCV-SOC measurements.
+
+A strict OCV / ICA / DVA analysis requires a dedicated low-rate or quasi-equilibrium voltage-curve protocol.
+
+
 ## Interpretation boundary
 
 This project does not yet claim:
@@ -212,7 +265,8 @@ This project does not yet claim:
 
 The current conclusions are bounded by:
 
-- Chen2020 DFN,
+- Chen2020 DFN for controlled perturbation fingerprint mapping,
+- OKane2022 DFN for degradation-enabled SEI-only aging branches,
 - selected perturbation families,
 - default isothermal 25 °C unless otherwise stated,
 - HPPC-style 1C 10 s discharge pulse,

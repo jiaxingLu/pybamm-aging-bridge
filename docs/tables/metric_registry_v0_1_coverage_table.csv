@@ -1,0 +1,9 @@
+layer,coverage,key_outputs,status
+degradation_state,implemented,"SEI thickness, LLI, lithium lost, side-reaction capacity loss",active
+external_capacity_RPT,implemented,"RPT discharge capacity, retention, fade",active
+multi_window_Ri,implemented,"Ri_0.1s, Ri_1s, Ri_10s, recovery Ri",active
+fitted_relaxation,implemented,tau1/tau2 at 60s and 300s windows,active
+nonparametric_relaxation,implemented,"tau_FG_eff, t95, t99, tau_tail, recovery area",active
+voltage_recovery_pseudo_OCV,partially implemented,HPPC finite-rest Uinf and recovery amplitude,feasibility
+voltage_curve_OCV_ICA_DVA,not implemented,requires low-rate / quasi-OCV protocol,deferred
+thermal,not implemented,requires non-isothermal model,deferred

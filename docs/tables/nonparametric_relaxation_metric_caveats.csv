@@ -1,0 +1,6 @@
+metric,main_caveat,interpretation_boundary
+tau_FG_eff_s,quantized by sampling period and threshold crossing,small changes below the sampling resolution should not be over-interpreted
+t95_s,sensitive to Uinf definition and late-window voltage drift,compare only under identical relaxation-window definitions
+t99_s,very sensitive to tail noise and Uinf estimate,"best used as audit descriptor, not sole mechanistic evidence"
+tau_tail_s,depends on chosen semilog fitting window,valid only for the selected 300–550 s tail window
+recovery_area_s,depends on normalization by recovery amplitude,unstable if recovery amplitude is extremely small

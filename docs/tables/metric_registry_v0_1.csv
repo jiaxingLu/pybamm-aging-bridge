@@ -1,0 +1,20 @@
+layer,metric,status,source,interpretation
+degradation_state,sei_thickness_m,active,PyBaMM internal variable,SEI film growth
+degradation_state,loss_lithium_inventory_pct,active,PyBaMM internal variable,loss of cyclable lithium / LLI
+degradation_state,total_lithium_lost_mol,active,PyBaMM internal variable,absolute lithium loss
+degradation_state,capacity_lost_side_reactions_Ah,active,PyBaMM internal variable,side-reaction capacity loss
+capacity_rpt,rpt_discharge_capacity_Ah,active,capacity RPT branch,externally observable discharge capacity
+capacity_rpt,capacity_retention_pct,active,capacity RPT branch,capacity retention relative to 0-cycle RPT
+multi_window_Ri,Ri_0p1s_mohm,active,HPPC pulse,early pulse resistance
+multi_window_Ri,Ri_1s_mohm,active,HPPC pulse,1-second pulse resistance
+multi_window_Ri,Ri_10s_mohm,active,HPPC pulse,near-end pulse resistance
+multi_window_Ri,Ri_recovery_0p1s_mohm,active,HPPC recovery,early recovery resistance
+multi_window_Ri,Ri_recovery_1s_mohm,active,HPPC recovery,1-second recovery resistance
+fitted_relaxation,tau1_60s / tau1_300s / tau2_60s / tau2_300s,active,biexponential fit,fit-window-dependent relaxation descriptors
+nonparametric_relaxation,tau_FG_eff,active,relaxation recovery curve,63.2% recovery time
+nonparametric_relaxation,t95 / t99,active,relaxation recovery curve,time to 95% / 99% recovery
+nonparametric_relaxation,tau_tail,active,late relaxation semilog slope,late-tail effective time constant
+nonparametric_relaxation,recovery_amplitude / recovery_area,active,relaxation recovery curve,non-parametric recovery morphology
+voltage_recovery_pseudo_ocv,U00_after_fixed_rest,feasibility,fixed endpoint + rest protocol,"pseudo-OCV / voltage recovery fingerprint, not strict OCV"
+voltage_curve_ICA_DVA,OCV shift / ICA / DVA,deferred,requires low-rate or quasi-equilibrium voltage curve,requires dedicated protocol
+thermal,heat generation / temperature rise,deferred_until_non_isothermal_branch,thermal model,not interpretable under current isothermal configuration

@@ -1,0 +1,8 @@
+metric_layer,main_metrics,final_evidence,strength,classification
+degradation_state,"SEI thickness, LLI, total lithium lost, side-reaction capacity loss",SEI thickness Δ = 4.472e-09 m; LLI = 0.05520 %; side-reaction capacity loss = 0.004201 Ah,strong,primary SEI-only degradation-state signature
+external_capacity_RPT,"RPT discharge capacity, capacity retention, capacity fade",capacity retention = 99.7461 %; capacity fade = 0.2539 %; capacity loss = 0.012821 Ah,clear but small,external capacity signature consistent with LLI / side reaction loss
+multi_window_Ri,"Ri_0.1s, Ri_1s, Ri_10s, recovery Ri",ΔRi_0.1s = 0.2606 mΩ; ΔRi_1s = 0.2639 mΩ; ΔRi_10s = 0.2272 mΩ,weak but monotonic,secondary Ri-sensitive component
+fitted_tau,"tau1_60s, tau1_300s, tau2_60s, tau2_300s",Δtau1_60s = 0.2082 s; Δtau1_300s = 0.2575 s; Δtau2_60s = 0.5121 s; Δtau2_300s = 0.1760 s,weak / non-dominant,not dominant SEI-only fingerprint
+nonparametric_relaxation,"tau_FG_eff, t95, t99, tau_tail, recovery area",Δtau_FG_eff = 0.6000 s; Δt95 = 0.5000 s; Δt99 = 0.1000 s; Δtau_tail = -0.0461 s,weak / secondary audit layer,"useful as recovery-shape audit, not primary fingerprint"
+voltage_recovery_pseudo_OCV,"relax_Uinf, recovery amplitude",Δrelax_Uinf = -0.001744 V; Δrecovery_amplitude = -0.000246 V,feasibility-level,finite-rest recovery voltage feature; not strict OCV
+overall,all active layers,"Strong degradation-state drift, clear external capacity fade, weak monotonic multi-window Ri drift, and weak relaxation-descriptor drift",mixed but capacity/LLI-dominant,"SEI-only aging primarily projects into capacity / LLI degradation-state and external capacity metrics, with a weak Ri component."

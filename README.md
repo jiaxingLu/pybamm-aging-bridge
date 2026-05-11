@@ -268,6 +268,77 @@ Current diagnostic interpretation rules:
 
 ---
 
+
+## SEI-only Metric Registry v0.1
+
+Notebook 15 extends the SEI-only aging fingerprint analysis into a broader diagnostic metric registry.
+
+The goal is to move beyond a narrow `Ri / tau1 / tau2` audit and classify SEI-only aging using multiple observable layers.
+
+### Implemented metric layers
+
+| Layer | Status | Main metrics |
+|---|---|---|
+| degradation state | active | SEI thickness, LLI, lithium lost, side-reaction capacity loss |
+| external capacity RPT | active | RPT discharge capacity, capacity retention, capacity fade |
+| multi-window resistance | active | Ri_0.1s, Ri_1s, Ri_10s, recovery Ri |
+| fitted relaxation | active | tau1_60s, tau1_300s, tau2_60s, tau2_300s |
+| non-parametric relaxation | active | tau_FG_eff, t95, t99, tau_tail, recovery area |
+| voltage recovery / pseudo-OCV | feasibility | finite-rest Uinf and recovery amplitude |
+| OCV / ICA / DVA | deferred | requires low-rate or quasi-equilibrium voltage curve |
+| thermal | deferred | requires non-isothermal model branch |
+
+### Main SEI-only classification
+
+Using Metric Registry v0.1, the SEI-only fingerprint is classified as:
+
+    capacity / LLI dominant mixed signature
+
+The dominant layer is the capacity / LLI degradation-state layer.
+
+The secondary layer is a weak but monotonic multi-window Ri component.
+
+The fitted and non-parametric relaxation descriptors are useful audit layers, but they do not form the dominant SEI-only fingerprint under the present proof-of-concept protocol.
+
+### Representative SEI Metric Registry figures
+
+External capacity RPT:
+
+![SEI Metric Registry capacity RPT drift](docs/figures/sei_metric_registry_capacity_rpt_drift.png)
+
+Capacity retention:
+
+![SEI Metric Registry capacity retention](docs/figures/sei_metric_registry_capacity_retention.png)
+
+LLI and side-reaction capacity loss:
+
+![SEI Metric Registry LLI and capacity loss](docs/figures/sei_metric_registry_LLI_capacity_loss.png)
+
+Multi-window resistance drift:
+
+![SEI Metric Registry multi-window Ri drift](docs/figures/sei_metric_registry_multi_window_Ri_drift.png)
+
+Fitted tau descriptor drift:
+
+![SEI Metric Registry fitted tau drift](docs/figures/sei_metric_registry_fitted_tau_drift.png)
+
+Non-parametric relaxation descriptor drift:
+
+![SEI Metric Registry non-parametric relaxation drift](docs/figures/sei_metric_registry_nonparam_relaxation_drift.png)
+
+### Methodological boundary
+
+The capacity RPT and HPPC/RPT branches are diagnostic only.
+
+They are not used as starting points for subsequent aging.
+
+The RPT conditioning is nominal-capacity based and approximate.
+
+Voltage-recovery metrics are finite-rest recovery descriptors, not strict OCV-SOC measurements.
+
+Thermal metrics remain deferred under the current isothermal model configuration.
+
+
 ## Notebook Index
 
 | Notebook | Purpose |
@@ -297,7 +368,8 @@ This repository does not yet claim:
 
 Current conclusions are bounded by:
 
-- Chen2020 DFN
+- Chen2020 DFN for controlled perturbation fingerprint mapping,
+- OKane2022 DFN for degradation-enabled SEI-only aging branches,
 - selected perturbation families
 - HPPC-style 1C 10 s discharge pulse
 - 600 s relaxation
