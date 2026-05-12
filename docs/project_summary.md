@@ -291,3 +291,52 @@ Next possible directions:
 2. SEI-only aging branch,
 3. plating-stress isolation branch,
 4. comparison with experimental HPPC aging observables.
+
+
+## Notebook 16 — Fixed-endpoint pseudo-OCV feasibility audit
+
+Notebook 16 extends the SEI-only diagnostic framework with a fixed-endpoint pseudo-OCV audit. The diagnostic protocol consists of full-charge preconditioning, C/3 discharge to a fixed loaded terminal-voltage endpoint (`Ukl = 3.70 V`), and a fixed 60 min rest before evaluating finite-rest voltage recovery features.
+
+### Main findings
+
+- The protocol quality check passes: the fixed loaded-voltage endpoint is reached with negligible error, and the 60 min rest duration is consistent across checkpoints.
+- `Q_to_Ukl` decreases from `2.307087 Ah` at 0 cycles to `2.296406 Ah` at 20 cycles, corresponding to a drift of approximately `-0.010680 Ah`.
+- The nominal SOC at the fixed loaded-voltage endpoint shifts upward by approximately `+0.214 percentage points`.
+- `U00_after_fixed_rest` changes weakly by approximately `+0.407 mV`.
+- The recovery amplitude changes by only approximately `-0.0097 mV`, which is interpreted as essentially neutral.
+
+### Interpretation boundary
+
+This layer must be interpreted as **fixed-endpoint pseudo-OCV**, not as strict OCV. The endpoint is defined under load by a fixed terminal voltage, and the voltage recovery is evaluated after a finite rest duration. Therefore, `U00_after_fixed_rest` is a finite-rest voltage-recovery descriptor, not a thermodynamic OCV-SOC point.
+
+The main diagnostic signal is not a strong OCV shift. Instead, the relevant observation is that under SEI-only aging, the same loaded terminal-voltage endpoint is reached after less discharged capacity. This makes the layer useful as an auxiliary feasibility-level descriptor, while strict OCV / ICA / DVA remains deferred to a dedicated low-rate or quasi-equilibrium protocol.
+
+### Classification
+
+`fixed-endpoint pseudo-OCV = feasibility-level auxiliary diagnostic layer`
+
+Dominant evidence:
+
+- clear `Q_to_Ukl` drift,
+- small endpoint nominal-SOC shift,
+- weak finite-rest voltage shift,
+- neutral recovery-amplitude response.
+
+This result complements the Metric Registry v0.1 by adding a voltage-curve / finite-rest descriptor layer, but it does not replace a dedicated strict OCV / ICA / DVA audit.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/fixed_endpoint_pseudo_ocv_Q_to_Ukl_drift.png`
+- `docs/figures/fixed_endpoint_pseudo_ocv_endpoint_soc_drift.png`
+- `docs/figures/fixed_endpoint_pseudo_ocv_U00_after_rest_drift_mV.png`
+- `docs/figures/fixed_endpoint_pseudo_ocv_recovery_features.png`
+
+Tables:
+
+- `docs/tables/fixed_endpoint_pseudo_ocv_quality_audit.csv`
+- `docs/tables/fixed_endpoint_pseudo_ocv_drift_table.csv`
+- `docs/tables/fixed_endpoint_pseudo_ocv_classification_table_clean.csv`
+- `docs/tables/fixed_endpoint_pseudo_ocv_metric_table.csv`
+

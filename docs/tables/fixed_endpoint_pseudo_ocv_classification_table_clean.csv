@@ -1,0 +1,7 @@
+metric_layer,evidence,strength,classification
+protocol_quality,Max abs Ukl error = 5.080e-10 mV; max rest-duration error = 9.734e-13 min,strong,fixed-endpoint protocol is technically clean
+Q_to_Ukl,Q_to_Ukl decreased by 0.010680 Ah from 0-cycle to 20-cycle checkpoint,clear,same-Ukl endpoint is reached with less discharged capacity after SEI aging
+endpoint_nominal_SOC,nominal SOC at endpoint shifted by 0.2136 percentage points,clear but small,same loaded Ukl does not imply identical SOC/state
+U00_after_fixed_rest,U00 after 60 min rest shifted by 0.4071 mV,weak,finite-rest voltage recovery shows weak positive drift
+recovery_amplitude,recovery amplitude shifted by -0.0097 mV,very weak / neutral,recovery amplitude is not a dominant SEI-only fingerprint in this protocol
+overall,"Q_to_Ukl decreases, endpoint nominal SOC increases slightly, U00_after_fixed_rest increases weakly, recovery amplitude remains nearly unchanged",feasibility-level diagnostic layer,"fixed-endpoint pseudo-OCV features are extractable and consistent with capacity/LLI shift, but they are secondary compared with capacity RPT and degradation-state metrics"

@@ -402,3 +402,24 @@ Current status:
     Phase B-3: multi-SOC fingerprint stability scan — complete
     Phase B-4: fingerprint map summary — complete
     Next: repository presentation cleanup and representative figures
+
+
+## Fixed-endpoint pseudo-OCV audit
+
+Notebook 16 adds a fixed-endpoint pseudo-OCV feasibility audit for the SEI-only aging branch. The protocol uses full-charge preconditioning, followed by a C/3 discharge to the same loaded terminal-voltage endpoint, `Ukl = 3.70 V`, and a fixed 60 min rest.
+
+The audit shows that the fixed-endpoint protocol is technically clean: the loaded-voltage endpoint error is negligible and the rest-duration quality check passes. Under SEI-only aging, the same loaded terminal-voltage endpoint is reached after less discharged capacity. From 0 to 20 cycles, `Q_to_Ukl` decreases by approximately `0.01068 Ah`, while the nominal endpoint SOC shifts upward by approximately `0.214 percentage points`.
+
+The finite-rest voltage descriptor remains weak. `U00_after_fixed_rest` shifts by approximately `+0.407 mV`, while the recovery amplitude remains essentially neutral. Therefore, the fixed-endpoint pseudo-OCV layer is classified as a feasibility-level auxiliary diagnostic layer, not as a strict OCV-SOC or ICA/DVA diagnostic.
+
+Representative outputs:
+
+- `docs/figures/fixed_endpoint_pseudo_ocv_Q_to_Ukl_drift.png`
+- `docs/figures/fixed_endpoint_pseudo_ocv_endpoint_soc_drift.png`
+- `docs/figures/fixed_endpoint_pseudo_ocv_U00_after_rest_drift_mV.png`
+- `docs/figures/fixed_endpoint_pseudo_ocv_recovery_features.png`
+- `docs/tables/fixed_endpoint_pseudo_ocv_quality_audit.csv`
+- `docs/tables/fixed_endpoint_pseudo_ocv_drift_table.csv`
+- `docs/tables/fixed_endpoint_pseudo_ocv_classification_table_clean.csv`
+- `docs/tables/fixed_endpoint_pseudo_ocv_metric_table.csv`
+
