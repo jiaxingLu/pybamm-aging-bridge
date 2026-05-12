@@ -1,0 +1,7 @@
+metric_layer,evidence,strength,classification
+protocol_quality,All low-rate V(Q) curves pass quality audit = True,strong,OCV-like curve extraction technically feasible
+capacity_curve,Low-rate discharge capacity changes from 5.100624 Ah to 5.085432 Ah; fade = 0.2978 %,clear,capacity loss is directly observable in low-rate diagnostic branch
+OCV_like_VQ,Common-Q voltage overlay and ΔU(Q) curve generated from C/25 discharge,feasibility-level,"OCV-like V(Q) comparison is extractable, but not strict thermodynamic OCV"
+ICA,ICA peak magnitude shift from 0 to 20 cycles = -2.3867 %,audit-level,ICA features are extractable; interpretability depends on smoothness and feature stability
+DVA,DVA magnitude curve generated from smoothed V(Q),audit-level,DVA features are extractable; mechanism interpretation remains deferred
+overall,"Low-rate V(Q), ΔU(Q), ICA, and DVA outputs were generated under SEI-only aging checkpoints.",feasibility-level diagnostic branch,"strict OCV / ICA / DVA branch is technically feasible, but mechanistic interpretation requires further protocol validation"

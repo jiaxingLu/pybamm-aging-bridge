@@ -340,3 +340,94 @@ Tables:
 - `docs/tables/fixed_endpoint_pseudo_ocv_classification_table_clean.csv`
 - `docs/tables/fixed_endpoint_pseudo_ocv_metric_table.csv`
 
+
+## Notebook 17 — Strict OCV / ICA / DVA feasibility audit
+
+Notebook 17 establishes a dedicated low-rate OCV-like diagnostic branch for the SEI-only aging workflow.
+
+The first implementation attempt used repeated full-charge preconditioning before the low-rate diagnostic branch. PyBaMM warnings showed that some preconditioning steps were infeasible or skipped because the aging checkpoints already ended in a full-charge-rest state. The protocol was therefore corrected to a diagnostic-only branch:
+
+- start from the pre-diagnostic full-charge-rest aging checkpoint,
+- use `initial_soc = 1.0` for the 0-cycle reference,
+- perform C/25 discharge to 2.5 V,
+- finish with a 60 min rest.
+
+### Segment-selection audit
+
+A selected-segment audit was required because PyBaMM `starting_solution` carries previous aging history into the diagnostic solution. The final C/25 diagnostic discharge segment was selected explicitly as the last discharge segment satisfying:
+
+`0.15 A <= I_mean <= 0.25 A` and `duration > 1000 min`.
+
+The selected diagnostic segments passed the audit:
+
+- mean current ≈ 0.2 A,
+- duration ≈ 1525–1530 min,
+- final voltage ≈ 2.5 V,
+- low-rate discharge capacity ≈ 5.085–5.101 Ah.
+
+### Main findings
+
+The low-rate discharge capacity decreased from `5.100624 Ah` at 0 cycles to `5.085432 Ah` at 20 cycles, corresponding to approximately `0.2978 %` capacity fade.
+
+The start-state audit passed. The C/25 diagnostic start-voltage spread was approximately `5.407 mV`, below the 10 mV feasibility threshold. This is acceptable for feasibility-level OCV-like analysis, but early-Q derivative features should be interpreted conservatively.
+
+The V(Q) quality audit passed for all checkpoints:
+
+- Q was monotonic,
+- each curve contained more than 1500 points,
+- voltage span was approximately 1.68–1.69 V,
+- local voltage-increase fractions remained below 0.2%.
+
+The OCV-like V(Q) curves are technically extractable and largely overlap across aging checkpoints. The ΔU(Q) comparison relative to the 0-cycle reference shows weak negative voltage drift over much of the common Q-window and stronger endpoint sensitivity near the low-voltage cutoff.
+
+ICA and DVA features were technically extractable from the smoothed low-rate V(Q) curves.
+
+For ICA, the dominant peak appears near `Q ≈ 0.48–0.49 Ah`. From 0 to 20 cycles, the peak magnitude changed from approximately `22.998 Ah/V` to `22.449 Ah/V`, while the peak position shifted from approximately `0.479 Ah` to `0.491 Ah`.
+
+For DVA, the median magnitude remained nearly unchanged at approximately `0.1775 V/Ah`, while the endpoint-sensitive DVA peak increased from approximately `2.425 V/Ah` to `2.735 V/Ah`.
+
+### Interpretation boundary
+
+This notebook establishes technical feasibility, not a fully validated thermodynamic OCV or mechanism-resolved ICA/DVA diagnostic.
+
+The C/25 discharge branch should be described as an OCV-like or quasi-equilibrium voltage-curve diagnostic. It should not be called strict thermodynamic OCV unless relaxation effects are further quantified or a slower/GITT-like protocol is introduced.
+
+ICA and DVA are derivative features extracted from a smoothed low-rate V(Q) curve. Their existence confirms that derivative-based voltage-curve descriptors are technically obtainable in the SEI-only branch. Their mechanistic interpretation remains deferred.
+
+### Classification
+
+`strict OCV / ICA / DVA branch = feasibility-level diagnostic branch`
+
+Supported:
+
+- C/25 low-rate diagnostic discharge produces smooth OCV-like V(Q) curves.
+- Low-rate capacity fade is directly observable.
+- ICA and DVA curves are technically extractable after smoothing and quality audit.
+- ICA/DVA should be classified as audit-level derivative descriptors.
+- Endpoint-region DVA drift is visible but must be interpreted conservatively.
+
+Not supported:
+
+- strict thermodynamic OCV,
+- mechanism-unique ICA/DVA fingerprints,
+- separation of SEI-only voltage-curve drift from all possible electrode-specific aging signatures,
+- validation against experimental aging data.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/strict_ocv_like_VQ_overlay.png`
+- `docs/figures/strict_ocv_like_deltaV_vs_Q.png`
+- `docs/figures/strict_ocv_ica_overlay.png`
+- `docs/figures/strict_ocv_dva_overlay.png`
+
+Tables:
+
+- `docs/tables/strict_ocv_ica_dva_quality_audit.csv`
+- `docs/tables/strict_ocv_ica_dva_curve_summary.csv`
+- `docs/tables/strict_ocv_ica_dva_start_state_audit.csv`
+- `docs/tables/strict_ocv_ica_dva_feature_table.csv`
+- `docs/tables/strict_ocv_ica_dva_classification_table.csv`
+- `docs/tables/strict_ocv_ica_dva_output_inventory.csv`
+

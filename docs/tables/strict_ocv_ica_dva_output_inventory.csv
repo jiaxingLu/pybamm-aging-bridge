@@ -1,0 +1,13 @@
+path,exists,size_kB
+data/strict_ocv_ica_dva_curve_table.csv,True,675.36
+data/strict_ocv_ica_dva_quality_audit.csv,True,0.76
+data/strict_ocv_ica_dva_feature_table.csv,True,0.56
+data/strict_ocv_ica_dva_classification_table.csv,True,1.06
+data/strict_ocv_ica_dva_diagnostic_segment_audit.csv,True,20.64
+data/strict_ocv_ica_dva_selected_diagnostic_segment_audit.csv,True,1.14
+data/strict_ocv_ica_dva_curve_summary.csv,True,0.48
+data/strict_ocv_ica_dva_start_state_audit.csv,True,0.33
+figures/strict_ocv_like_VQ_overlay.png,True,169.49
+figures/strict_ocv_like_deltaV_vs_Q.png,True,163.55
+figures/strict_ocv_ica_overlay.png,True,212.2
+figures/strict_ocv_dva_overlay.png,True,176.32

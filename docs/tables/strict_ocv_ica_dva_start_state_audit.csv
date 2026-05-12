@@ -1,0 +1,4 @@
+metric,value,threshold,pass,interpretation
+U_start_spread_mV,5.407201528186967,10.0,True,start-voltage spread before C/25 diagnostic discharge
+Q_common_max_Ah,5.085432393162075,,True,common Q-window upper bound across all checkpoints
+capacity_fade_0_to_20_pct,0.2978370302587492,,True,low-rate discharge capacity fade from 0 to 20 cycles
