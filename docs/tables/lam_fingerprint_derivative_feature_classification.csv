@@ -1,0 +1,49 @@
+condition,branch,LAM_fraction,region,feature,signal_to_smoothing_range_ratio,direction_consistency,classification
+NE_LAM_10pct,NE_LAM,0.1,central,ICA_peak_Q_Ah,0.5999999999999996,1.0,not reliable as primary fitting target
+NE_LAM_10pct,NE_LAM,0.1,central,ICA_peak_mag_Ah_per_V,0.4898863387743343,0.5,not reliable as primary fitting target
+NE_LAM_10pct,NE_LAM,0.1,central,DVA_median_V_per_Ah,2.7706439939290024,1.0,candidate fitting target
+NE_LAM_10pct,NE_LAM,0.1,central,DVA_peak_mag_V_per_Ah,1.1266485888776263,1.0,conditional auxiliary target
+NE_LAM_10pct,NE_LAM,0.1,full_common,ICA_peak_Q_Ah,0.7857142857142864,0.75,not reliable as primary fitting target
+NE_LAM_10pct,NE_LAM,0.1,full_common,ICA_peak_mag_Ah_per_V,0.6396146434120569,0.75,not reliable as primary fitting target
+NE_LAM_10pct,NE_LAM,0.1,full_common,DVA_median_V_per_Ah,2.6179573241295433,1.0,candidate fitting target
+NE_LAM_10pct,NE_LAM,0.1,full_common,DVA_peak_mag_V_per_Ah,1.6633187528220894,1.0,conditional auxiliary target
+NE_LAM_20pct,NE_LAM,0.2,central,ICA_peak_Q_Ah,0.5999999999999996,1.0,not reliable as primary fitting target
+NE_LAM_20pct,NE_LAM,0.2,central,ICA_peak_mag_Ah_per_V,0.46869761117604936,1.0,not reliable as primary fitting target
+NE_LAM_20pct,NE_LAM,0.2,central,DVA_median_V_per_Ah,4.268931731705975,1.0,candidate fitting target
+NE_LAM_20pct,NE_LAM,0.2,central,DVA_peak_mag_V_per_Ah,0.9878160263212657,1.0,not reliable as primary fitting target
+NE_LAM_20pct,NE_LAM,0.2,full_common,ICA_peak_Q_Ah,0.676470588235294,0.75,not reliable as primary fitting target
+NE_LAM_20pct,NE_LAM,0.2,full_common,ICA_peak_mag_Ah_per_V,0.4299329298709166,0.75,not reliable as primary fitting target
+NE_LAM_20pct,NE_LAM,0.2,full_common,DVA_median_V_per_Ah,9.326546813537618,1.0,candidate fitting target
+NE_LAM_20pct,NE_LAM,0.2,full_common,DVA_peak_mag_V_per_Ah,1.0598195045542993,1.0,conditional auxiliary target
+NE_LAM_5pct,NE_LAM,0.05,central,ICA_peak_Q_Ah,0.5178571428571431,0.6666666666666666,not reliable as primary fitting target
+NE_LAM_5pct,NE_LAM,0.05,central,ICA_peak_mag_Ah_per_V,0.3940553755222565,0.75,not reliable as primary fitting target
+NE_LAM_5pct,NE_LAM,0.05,central,DVA_median_V_per_Ah,0.9528376681333603,1.0,not reliable as primary fitting target
+NE_LAM_5pct,NE_LAM,0.05,central,DVA_peak_mag_V_per_Ah,1.8661128396958326,1.0,conditional auxiliary target
+NE_LAM_5pct,NE_LAM,0.05,full_common,ICA_peak_Q_Ah,0.8249999999999992,0.75,not reliable as primary fitting target
+NE_LAM_5pct,NE_LAM,0.05,full_common,ICA_peak_mag_Ah_per_V,0.4232320662405602,0.75,not reliable as primary fitting target
+NE_LAM_5pct,NE_LAM,0.05,full_common,DVA_median_V_per_Ah,0.6311169521743899,1.0,not reliable as primary fitting target
+NE_LAM_5pct,NE_LAM,0.05,full_common,DVA_peak_mag_V_per_Ah,0.4208588510352423,0.5,not reliable as primary fitting target
+PE_LAM_10pct,PE_LAM,0.1,central,ICA_peak_Q_Ah,0.4444444444444446,1.0,not reliable as primary fitting target
+PE_LAM_10pct,PE_LAM,0.1,central,ICA_peak_mag_Ah_per_V,0.6817399728844474,0.75,not reliable as primary fitting target
+PE_LAM_10pct,PE_LAM,0.1,central,DVA_median_V_per_Ah,13.390737084863957,1.0,candidate fitting target
+PE_LAM_10pct,PE_LAM,0.1,central,DVA_peak_mag_V_per_Ah,1.9282540670164048,1.0,conditional auxiliary target
+PE_LAM_10pct,PE_LAM,0.1,full_common,ICA_peak_Q_Ah,0.6742424242424235,1.0,not reliable as primary fitting target
+PE_LAM_10pct,PE_LAM,0.1,full_common,ICA_peak_mag_Ah_per_V,0.7291276594042417,0.75,not reliable as primary fitting target
+PE_LAM_10pct,PE_LAM,0.1,full_common,DVA_median_V_per_Ah,26.612691892611956,1.0,candidate fitting target
+PE_LAM_10pct,PE_LAM,0.1,full_common,DVA_peak_mag_V_per_Ah,0.6810783192410808,1.0,not reliable as primary fitting target
+PE_LAM_20pct,PE_LAM,0.2,central,ICA_peak_Q_Ah,0.8854166666666672,1.0,not reliable as primary fitting target
+PE_LAM_20pct,PE_LAM,0.2,central,ICA_peak_mag_Ah_per_V,0.6274085296868371,0.5,not reliable as primary fitting target
+PE_LAM_20pct,PE_LAM,0.2,central,DVA_median_V_per_Ah,10.360218452696717,1.0,candidate fitting target
+PE_LAM_20pct,PE_LAM,0.2,central,DVA_peak_mag_V_per_Ah,5.050994421989117,1.0,candidate fitting target
+PE_LAM_20pct,PE_LAM,0.2,full_common,ICA_peak_Q_Ah,3.649999999999984,1.0,candidate fitting target
+PE_LAM_20pct,PE_LAM,0.2,full_common,ICA_peak_mag_Ah_per_V,0.6897142334156391,1.0,not reliable as primary fitting target
+PE_LAM_20pct,PE_LAM,0.2,full_common,DVA_median_V_per_Ah,8.415415826299819,1.0,candidate fitting target
+PE_LAM_20pct,PE_LAM,0.2,full_common,DVA_peak_mag_V_per_Ah,1.1167260675112716,1.0,conditional auxiliary target
+PE_LAM_5pct,PE_LAM,0.05,central,ICA_peak_Q_Ah,0.4270833333333335,1.0,not reliable as primary fitting target
+PE_LAM_5pct,PE_LAM,0.05,central,ICA_peak_mag_Ah_per_V,0.5885448598241266,0.75,not reliable as primary fitting target
+PE_LAM_5pct,PE_LAM,0.05,central,DVA_median_V_per_Ah,3.1634180807863665,1.0,candidate fitting target
+PE_LAM_5pct,PE_LAM,0.05,central,DVA_peak_mag_V_per_Ah,1.4516877881251704,1.0,conditional auxiliary target
+PE_LAM_5pct,PE_LAM,0.05,full_common,ICA_peak_Q_Ah,0.4852941176470586,1.0,not reliable as primary fitting target
+PE_LAM_5pct,PE_LAM,0.05,full_common,ICA_peak_mag_Ah_per_V,0.6106861018351453,1.0,not reliable as primary fitting target
+PE_LAM_5pct,PE_LAM,0.05,full_common,DVA_median_V_per_Ah,2.137640055341609,1.0,candidate fitting target
+PE_LAM_5pct,PE_LAM,0.05,full_common,DVA_peak_mag_V_per_Ah,0.7126864303139562,1.0,not reliable as primary fitting target

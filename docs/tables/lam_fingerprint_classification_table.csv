@@ -1,0 +1,6 @@
+metric_layer,evidence,strength,classification
+capacity_RPT,NE-LAM shows strong monotonic capacity loss up to ~19.69% at 20% LAM; PE-LAM shows weaker capacity loss up to ~2.67% at 20% LAM.,strong for NE-LAM; moderate for PE-LAM,capacity RPT separates NE-LAM and PE-LAM response patterns
+C25_central_VQ,PE-LAM shows large central-window V(Q) drift without endpoint amplification; NE-LAM shows strong drift but becomes endpoint/boundary sensitive at 10–20%.,strong,LAM produces stronger voltage-shape fingerprints than SEI-only aging
+ICA_DVA_central,DVA_median central features pass signal-to-smoothing criteria for multiple LAM cases; ICA features remain mostly unreliable except selected boundary-sensitive cases.,supported for DVA; weak for ICA,"DVA central features are candidate fitting targets for LAM, especially PE-LAM"
+endpoint_boundary,NE-LAM 10% and 20% show endpoint amplification; PE-LAM does not show dominant endpoint amplification.,critical boundary,NE-LAM high-severity cases require boundary-control interpretation
+overall,"Controlled LAM produces clear capacity, voltage-shape, and DVA fingerprints that differ from both SEI-only aging and contact resistance growth.",supported,LAM fingerprint is capacity- and voltage-shape-sensitive; PE-LAM is especially suitable for C25 V(Q) and DVA-based fitting targets

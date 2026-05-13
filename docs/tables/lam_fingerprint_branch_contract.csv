@@ -1,0 +1,8 @@
+branch,electrode,LAM_fraction,interpretation,condition
+baseline,none,0.0,reference state without controlled active-material loss,baseline
+NE_LAM,negative,0.05,5% negative-electrode active material volume fraction reduction,NE_LAM_5pct
+NE_LAM,negative,0.1,10% negative-electrode active material volume fraction reduction,NE_LAM_10pct
+NE_LAM,negative,0.2,20% negative-electrode active material volume fraction reduction,NE_LAM_20pct
+PE_LAM,positive,0.05,5% positive-electrode active material volume fraction reduction,PE_LAM_5pct
+PE_LAM,positive,0.1,10% positive-electrode active material volume fraction reduction,PE_LAM_10pct
+PE_LAM,positive,0.2,20% positive-electrode active material volume fraction reduction,PE_LAM_20pct

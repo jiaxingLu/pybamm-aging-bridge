@@ -689,3 +689,76 @@ Representative outputs:
 - `docs/tables/resistance_growth_fingerprint_summary_v0_2.csv`
 - `docs/tables/resistance_growth_classification_table.csv`
 
+
+## LAM fingerprint audit
+
+Notebook 24 audits controlled LAM = Loss of Active Material（活性材料损失） as a mechanism-contrast branch.
+
+Two LAM branches were evaluated by scaling active material volume fraction:
+
+- NE-LAM = Negative Electrode Loss of Active Material（负极活性材料损失）
+- PE-LAM = Positive Electrode Loss of Active Material（正极活性材料损失）
+
+LAM levels:
+
+- 5%
+- 10%
+- 20%
+
+The audit used Mechanism Fingerprint Registry v0.2 and evaluated:
+
+- Capacity RPT = Reference Performance Test（容量基准性能测试）
+- C/25 OCV-like V(Q)（C/25 近似 OCV 电压曲线）
+- central-window voltage drift（中央窗口电压漂移）
+- ICA/DVA central features（中央窗口微分电压特征）
+- endpoint / boundary behavior（端点 / 边界行为）
+- fitting-target hierarchy（拟合目标层级）
+
+Key findings:
+
+- NE-LAM is capacity-dominant and boundary-sensitive.
+- PE-LAM is voltage-shape / DVA-dominant and less endpoint-confounded.
+- LAM produces stronger voltage-shape fingerprints than SEI-only aging.
+- DVA central features become candidate fitting targets under LAM, especially PE-LAM.
+- ICA peak features remain mostly unreliable as primary fitting targets.
+
+Capacity RPT response:
+
+- NE-LAM 5% / 10% / 20% capacity retention ≈ 95.09% / 90.18% / 80.31%.
+- PE-LAM 5% / 10% / 20% capacity retention ≈ 99.85% / 99.68% / 97.33%.
+
+C/25 central-window V(Q):
+
+- PE-LAM 5% / 10% / 20% central mean ΔU ≈ −14.63 / −30.43 / −66.42 mV.
+- PE-LAM endpoint amplification flag = False.
+- NE-LAM 10% and 20% show endpoint amplification and require boundary-control interpretation.
+
+DVA central features:
+
+- NE-LAM 10% / 20% DVA_median central signal-to-smoothing ratio ≈ 2.77 / 4.27.
+- PE-LAM 5% / 10% / 20% DVA_median central ratio ≈ 3.16 / 13.39 / 10.36.
+- Direction consistency = 1.0.
+
+Project-level classification:
+
+`LAM fingerprint = capacity- and voltage-shape-sensitive, DVA-informative`
+
+NE-LAM is best described as:
+
+`capacity-dominant + boundary-sensitive`
+
+PE-LAM is best described as:
+
+`voltage-shape / DVA-dominant`
+
+Representative outputs:
+
+- `docs/figures/lam_fingerprint_c25_VQ_overlay.png`
+- `docs/figures/lam_fingerprint_c25_deltaU_vs_Q.png`
+- `docs/figures/lam_fingerprint_capacity_retention.png`
+- `docs/figures/lam_fingerprint_ica_overlay.png`
+- `docs/figures/lam_fingerprint_dva_overlay.png`
+- `docs/tables/lam_fingerprint_branch_summary.csv`
+- `docs/tables/lam_fingerprint_summary_v0_2.csv`
+- `docs/tables/lam_fingerprint_classification_table.csv`
+

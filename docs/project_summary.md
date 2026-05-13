@@ -1163,3 +1163,199 @@ Expected LAM-sensitive layers:
 
 The same Mechanism Fingerprint Registry v0.2 should be reused so that SEI, resistance growth, LAM, and plating can later be compared in a unified cross-mechanism synthesis notebook.
 
+
+## Notebook 24 — LAM fingerprint audit
+
+Notebook 24 audited whether controlled LAM = Loss of Active Material（活性材料损失） produces a diagnostic fingerprint that is separable from both SEI-only aging and contact / ohmic resistance growth.
+
+### Mechanism branch
+
+This notebook used controlled active-material volume-fraction scaling rather than a dynamic LAM aging pathway.
+
+Branches:
+
+- NE-LAM = Negative Electrode Loss of Active Material（负极活性材料损失）
+- PE-LAM = Positive Electrode Loss of Active Material（正极活性材料损失）
+
+LAM levels:
+
+- 5%
+- 10%
+- 20%
+
+The notebook reused Mechanism Fingerprint Registry v0.2 and audited:
+
+1. Capacity RPT = Reference Performance Test（容量基准性能测试）
+2. C/25 OCV-like V(Q)（C/25 近似 OCV 电压曲线）
+3. central-window voltage drift（中央窗口电压漂移）
+4. ICA/DVA central features（中央窗口微分电压特征）
+5. endpoint / boundary behavior（端点 / 边界行为）
+6. fitting-target hierarchy（拟合目标层级）
+
+### Capacity RPT response
+
+NE-LAM produced a strong and monotonic capacity-loss fingerprint:
+
+- NE-LAM 5%: capacity retention ≈ `95.09%`
+- NE-LAM 10%: capacity retention ≈ `90.18%`
+- NE-LAM 20%: capacity retention ≈ `80.31%`
+
+At 20% NE-LAM, capacity loss reached approximately:
+
+- `19.69%`
+- `0.994110 Ah`
+
+PE-LAM produced a weaker capacity response:
+
+- PE-LAM 5%: capacity retention ≈ `99.85%`
+- PE-LAM 10%: capacity retention ≈ `99.68%`
+- PE-LAM 20%: capacity retention ≈ `97.33%`
+
+At 20% PE-LAM, capacity loss reached approximately:
+
+- `2.67%`
+- `0.135009 Ah`
+
+Therefore, Capacity RPT separates NE-LAM and PE-LAM response patterns. NE-LAM is capacity-dominant, whereas PE-LAM is not primarily capacity-dominant in the tested range.
+
+### C/25 OCV-like V(Q)
+
+All C/25 OCV-like V(Q) curves passed the quality audit.
+
+The common-Q window was limited by the most capacity-reduced condition, NE-LAM 20%:
+
+- common Q upper bound ≈ `4.105 Ah`
+- effective central window = `0.20–4.055 Ah`
+
+PE-LAM produced strong central-window voltage-shape drift without dominant endpoint amplification:
+
+- PE-LAM 5%: central mean ΔU ≈ `−14.63 mV`
+- PE-LAM 10%: central mean ΔU ≈ `−30.43 mV`
+- PE-LAM 20%: central mean ΔU ≈ `−66.42 mV`
+- endpoint amplification flag = `False`
+
+This indicates that PE-LAM produces a genuine voltage-shape fingerprint rather than an endpoint-only signal.
+
+NE-LAM also produced strong V(Q) drift, but higher-severity NE-LAM became boundary-sensitive:
+
+- NE-LAM 5%: central mean ΔU ≈ `−5.16 mV`, endpoint flag = `False`
+- NE-LAM 10%: central mean ΔU ≈ `−12.35 mV`, endpoint flag = `True`
+- NE-LAM 20%: central mean ΔU ≈ `−54.10 mV`, endpoint flag = `True`
+
+Therefore, NE-LAM 10% and 20% require endpoint / boundary-control interpretation.
+
+### ICA/DVA derivative features
+
+ICA = Incremental Capacity Analysis（增量容量分析）  
+DVA = Differential Voltage Analysis（微分电压分析）
+
+DVA central features were substantially more informative under LAM than under SEI-only aging.
+
+For DVA_median in the central region:
+
+- NE-LAM 10%: signal-to-smoothing ratio ≈ `2.77`
+- NE-LAM 20%: signal-to-smoothing ratio ≈ `4.27`
+- PE-LAM 5%: signal-to-smoothing ratio ≈ `3.16`
+- PE-LAM 10%: signal-to-smoothing ratio ≈ `13.39`
+- PE-LAM 20%: signal-to-smoothing ratio ≈ `10.36`
+
+These values exceed the primary threshold of 2 for multiple LAM cases and show direction consistency of 1.0.
+
+In contrast, most ICA peak-Q and ICA peak-magnitude features remained below the reliability threshold or were more sensitive to smoothing and boundary effects.
+
+Thus:
+
+- DVA central features are candidate fitting targets for LAM, especially PE-LAM.
+- ICA features remain mostly auxiliary or unreliable as primary fitting targets.
+
+### Branch-level fingerprint classification
+
+NE-LAM is classified as:
+
+`capacity-dominant + boundary-sensitive LAM fingerprint`
+
+Main targets:
+
+- Capacity RPT as primary target
+- C/25 central V(Q) as secondary / conditional target
+- DVA_median central as secondary / candidate target
+- endpoint features only with boundary control
+
+NE-LAM 20% should be treated as a stress / boundary case because it shows strong endpoint amplification.
+
+PE-LAM is classified as:
+
+`voltage-shape / DVA-dominant LAM fingerprint`
+
+Main targets:
+
+- C/25 central-window V(Q)
+- DVA_median central features
+- Capacity RPT as auxiliary / secondary target
+
+PE-LAM is especially valuable because it produces strong central V(Q) and DVA signals while avoiding dominant endpoint amplification in the tested range.
+
+### Comparison against previous mechanisms
+
+SEI-only aging:
+
+`capacity-dominant, voltage-secondary, derivative-auxiliary`
+
+Contact / ohmic resistance growth:
+
+`Ri(t)-dominant, post-ohmic-relaxation-invariant, capacity-weak`
+
+Controlled LAM:
+
+`capacity- and voltage-shape-sensitive, DVA-informative`
+
+This is the first audited mechanism branch in the project where DVA central features can become candidate fitting targets.
+
+### Project-level classification
+
+`LAM fingerprint = capacity- and voltage-shape-sensitive, DVA-informative`
+
+Project-level wording:
+
+> Controlled LAM produces diagnostic fingerprints that are clearly stronger and more shape-sensitive than SEI-only aging. NE-LAM is primarily capacity-dominant and boundary-sensitive, whereas PE-LAM produces strong central-window voltage-shape and DVA signatures without dominant endpoint amplification. DVA central features are therefore candidate fitting targets for LAM-oriented aging-model parameterization.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/lam_fingerprint_c25_VQ_overlay.png`
+- `docs/figures/lam_fingerprint_c25_deltaU_vs_Q.png`
+- `docs/figures/lam_fingerprint_capacity_retention.png`
+- `docs/figures/lam_fingerprint_ica_overlay.png`
+- `docs/figures/lam_fingerprint_dva_overlay.png`
+
+Tables:
+
+- `docs/tables/lam_fingerprint_branch_contract.csv`
+- `docs/tables/lam_fingerprint_parameter_audit.csv`
+- `docs/tables/lam_fingerprint_capacity_rpt_table.csv`
+- `docs/tables/lam_fingerprint_c25_curve_summary.csv`
+- `docs/tables/lam_fingerprint_c25_voltage_drift_audit.csv`
+- `docs/tables/lam_fingerprint_derivative_signal_audit.csv`
+- `docs/tables/lam_fingerprint_derivative_feature_classification.csv`
+- `docs/tables/lam_fingerprint_branch_summary.csv`
+- `docs/tables/lam_fingerprint_summary_v0_2.csv`
+- `docs/tables/lam_fingerprint_classification_table.csv`
+- `docs/tables/lam_fingerprint_output_inventory.csv`
+
+### Next step
+
+Recommended next notebook:
+
+`25_plating_fingerprint_audit.ipynb`
+
+The purpose is to test whether lithium plating produces a distinct fingerprint involving:
+
+- capacity / LLI-like loss,
+- voltage-shape drift,
+- possible recovery hysteresis,
+- protocol-sensitive boundary behavior,
+- possible Ri(t) and relaxation changes.
+
+The same Mechanism Fingerprint Registry v0.2 should be reused to enable cross-mechanism synthesis in a later notebook.
+
