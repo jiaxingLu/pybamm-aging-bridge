@@ -1,0 +1,13 @@
+region,feature,signal_to_smoothing_range_ratio,monotonic_fraction_across_smoothing,classification,revised_classification
+full,ICA_peak_Q_Ah,0.5000000000000007,0.25,not reliable as primary fitting target,not reliable as primary fitting target
+full,ICA_peak_mag_Ah_per_V,0.6033374710196294,0.25,not reliable as primary fitting target,not reliable as primary fitting target
+full,DVA_median_V_per_Ah,0.6744814803146563,0.25,not reliable as primary fitting target,not reliable as primary fitting target
+full,DVA_peak_mag_V_per_Ah,1.2521672853645127,1.0,conditional auxiliary target,conditional auxiliary target
+central,ICA_peak_Q_Ah,0.3750000000000005,0.75,not reliable as primary fitting target,not reliable as primary fitting target
+central,ICA_peak_mag_Ah_per_V,0.671319641726019,0.5,not reliable as primary fitting target,not reliable as primary fitting target
+central,DVA_median_V_per_Ah,0.7228086362014097,0.75,not reliable as primary fitting target,not reliable as primary fitting target
+central,DVA_peak_mag_V_per_Ah,1.275444582447379,1.0,conditional auxiliary target,conditional auxiliary target
+endpoint,ICA_peak_Q_Ah,6.749999999998613,0.75,candidate fitting target,endpoint-confounded candidate; not recommended as primary target
+endpoint,ICA_peak_mag_Ah_per_V,0.2634542066417825,1.0,not reliable as primary fitting target,not reliable as primary fitting target
+endpoint,DVA_median_V_per_Ah,1.3529962710061796,1.0,conditional auxiliary target,endpoint-sensitive auxiliary target
+endpoint,DVA_peak_mag_V_per_Ah,1.2521672853646846,1.0,conditional auxiliary target,endpoint-sensitive auxiliary target

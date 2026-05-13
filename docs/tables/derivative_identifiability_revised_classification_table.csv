@@ -1,0 +1,6 @@
+metric_layer,evidence,strength,classification
+capacity_RPT,"100-cycle capacity fade = 0.4696 %, capacity loss = 0.023715 Ah.",strong,recommended primary fitting target
+GITT_like_finite_rest,100-cycle mean ΔU = -2.280 mV; p95 |ΔU| = 4.145 mV.,moderate / clean but weak,recommended secondary voltage target
+C25_central_VQ,100-cycle central-window mean ΔU = -2.694 mV; central p95 |ΔU| = 6.251 mV.,moderate / protocol-sensitive,conditional secondary target with endpoint control
+ICA_DVA,Most full/central derivative features show signal-to-smoothing ratios below 1; endpoint ICA peak-Q candidate is endpoint-confounded.,weak,not recommended as primary fitting targets under stronger SEI-only aging
+overall,"Derivative features were audited against smoothing-window sensitivity, endpoint regions, common-Q control, capacity RPT, C/25 central drift, and GITT-like finite-rest drift.",data-backed,SEI-only parameterization should prioritize capacity RPT and secondary voltage-shape targets; ICA/DVA should remain auxiliary.

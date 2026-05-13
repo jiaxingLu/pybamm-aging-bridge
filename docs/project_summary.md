@@ -867,3 +867,83 @@ This notebook should audit whether ICA/DVA features become more informative unde
 
 If derivative features remain weak or smoothing-sensitive, the SEI-only branch should be classified as capacity-dominant rather than voltage-derivative-dominant. Subsequent mechanism branches should then prioritize plating or LAM.
 
+
+## Notebook 22 — Derivative feature identifiability under stronger SEI aging
+
+Notebook 22 audited whether ICA/DVA derivative voltage features under stronger SEI-only aging are stable enough to serve as fitting targets for aging-model parameterization.
+
+### Purpose
+
+The goal was not merely to generate ICA/DVA curves, but to test whether derivative features are robust enough for Porsche-style measurement-based aging-model parameterization.
+
+The notebook used audited outputs from Notebook 21 and did not run new aging simulations.
+
+### Aging-evidence and fitting-target rejection rules
+
+A feature is not recommended as primary aging evidence or as a primary fitting target if any of the following apply:
+
+1. **Signal-to-smoothing-range ratio < 1** — the aging signal is smaller than smoothing-window sensitivity.
+2. **Monotonic fraction across smoothing < 0.75** — monotonic aging trend is unstable across smoothing settings.
+3. **Signal appears only in the endpoint region** — likely cutoff-boundary or endpoint amplification.
+4. **Strong preprocessing dependence** — feature depends strongly on smoothing, interpolation, common-Q grid, or endpoint truncation.
+5. **Weak physical linkage to degradation-state variables** — feature is not consistently linked to SEI thickness, LLI, lithium loss, or SEI capacity loss.
+6. **Mechanism non-uniqueness** — feature can be produced by multiple mechanisms such as SEI, plating, LAM, or resistance growth.
+7. **Signal magnitude below protocol sensitivity** — feature drift is smaller than diagnostic-protocol sensitivity.
+
+### Main findings
+
+Most full-window and central-window ICA/DVA features were not suitable as primary fitting targets.
+
+Examples:
+
+- full-window ICA peak-Q signal-to-smoothing ratio ≈ `0.50`,
+- central-window ICA peak-Q signal-to-smoothing ratio ≈ `0.375`,
+- central-window DVA median signal-to-smoothing ratio ≈ `0.723`.
+
+These values are below 1, meaning that the aging-induced derivative signal is comparable to or smaller than smoothing-window sensitivity.
+
+DVA peak magnitude showed conditional auxiliary value:
+
+- full-window DVA peak ratio ≈ `1.25`,
+- central-window DVA peak ratio ≈ `1.28`.
+
+However, peak-type features remain curvature-sensitive and should not be used as primary fitting targets.
+
+Endpoint ICA peak-Q showed a high ratio of approximately `6.75`, but this feature originates from the endpoint region. Because Notebook 21 established strong endpoint amplification in C/25 full-window V(Q), this feature was reclassified as:
+
+`endpoint-confounded candidate; not recommended as primary target`
+
+### Fitting-target hierarchy
+
+The recommended fitting-target hierarchy for SEI-only aging is:
+
+1. **Capacity RPT** — primary measurement-level fitting target.
+2. **GITT-like finite-rest voltage points** — secondary voltage-shape target.
+3. **C/25 central-window V(Q)** — conditional secondary voltage-shape target.
+4. **C/25 endpoint V(Q)** — boundary diagnostic only.
+5. **ICA/DVA derivative features** — auxiliary audit descriptors only.
+
+### Project-level classification
+
+`SEI-only parameterization target hierarchy = capacity-first, voltage-shape secondary, derivative auxiliary`
+
+Project-level wording:
+
+> For SEI-only aging, capacity RPT should be prioritized as the primary fitting target. GITT-like finite-rest voltage points and C/25 central-window V(Q) can serve as secondary voltage-shape constraints. ICA/DVA derivative features are not reliable enough for primary aging-model parameterization under the tested stronger SEI-only aging branch and should remain auxiliary audit descriptors.
+
+### Porsche-oriented interpretation
+
+This notebook supports a Porsche-style aging-modeling workflow by separating robust fitting targets from fragile diagnostic descriptors.
+
+The result shows that model parameterization should not blindly use all available voltage-derived features. Each candidate observable must first be audited for smoothing sensitivity, endpoint confounding, physical linkage, mechanism uniqueness, and protocol sensitivity before it enters an optimization objective.
+
+### Next mechanism branches
+
+The next stage will compare mechanism-specific fingerprints across:
+
+1. resistance-growth / contact-ohmic branch,
+2. LAM branch,
+3. plating branch.
+
+The goal is to build a mechanism-to-observable fingerprint map and determine which mechanisms generate robust fitting targets beyond capacity RPT.
+

@@ -1,0 +1,17 @@
+metric_layer,evidence,strength,classification
+smoothing_sensitivity,Derivative feature signals were compared against smoothing-window variability.,audit-level,smoothing sensitivity explicitly audited
+endpoint_control,"Full, central, and endpoint Q-regions were evaluated separately.",critical boundary,endpoint-region artifacts explicitly controlled
+candidate_features,1 feature-region combinations classified as candidate fitting targets; 4 as conditional auxiliary targets.,weakly supported,derivative features are usable only as auxiliary descriptors
+overall,ICA/DVA features were audited for identifiability under 0/20/50/100-cycle SEI-only aging.,weakly supported,derivative features are usable only as auxiliary descriptors
+full,ICA_peak_Q_Ah,0.5000000000000007,not reliable as primary fitting target
+full,ICA_peak_mag_Ah_per_V,0.6033374710196294,not reliable as primary fitting target
+full,DVA_median_V_per_Ah,0.6744814803146563,not reliable as primary fitting target
+full,DVA_peak_mag_V_per_Ah,1.2521672853645127,conditional auxiliary target
+central,ICA_peak_Q_Ah,0.3750000000000005,not reliable as primary fitting target
+central,ICA_peak_mag_Ah_per_V,0.671319641726019,not reliable as primary fitting target
+central,DVA_median_V_per_Ah,0.7228086362014097,not reliable as primary fitting target
+central,DVA_peak_mag_V_per_Ah,1.275444582447379,conditional auxiliary target
+endpoint,ICA_peak_Q_Ah,6.749999999998613,candidate fitting target
+endpoint,ICA_peak_mag_Ah_per_V,0.2634542066417825,not reliable as primary fitting target
+endpoint,DVA_median_V_per_Ah,1.3529962710061796,conditional auxiliary target
+endpoint,DVA_peak_mag_V_per_Ah,1.2521672853646846,conditional auxiliary target

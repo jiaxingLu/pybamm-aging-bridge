@@ -1,0 +1,14 @@
+path,exists,size_kB
+data/derivative_identifiability_common_grid_table.csv,True,234.27
+data/derivative_identifiability_feature_table.csv,True,10.65
+data/derivative_identifiability_derivative_curve_table.csv,True,1898.95
+data/derivative_identifiability_smoothing_audit.csv,True,6.14
+data/derivative_identifiability_signal_by_smoothing_table.csv,True,7.2
+data/derivative_identifiability_signal_audit.csv,True,3.31
+data/derivative_identifiability_classification_table.csv,True,1.65
+data/derivative_identifiability_revised_feature_classification.csv,True,1.57
+data/derivative_identifiability_fitting_target_hierarchy.csv,True,1.98
+data/derivative_identifiability_revised_classification_table.csv,True,1.0
+figures/derivative_identifiability_ica_overlay.png,True,236.82
+figures/derivative_identifiability_dva_overlay.png,True,191.41
+figures/derivative_identifiability_signal_vs_smoothing.png,True,182.13

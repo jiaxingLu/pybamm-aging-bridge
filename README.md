@@ -593,3 +593,38 @@ Representative outputs:
 - `docs/tables/stronger_sei_diag_gitt_classification_table.csv`
 - `docs/tables/stronger_sei_diag_output_inventory.csv`
 
+
+## Aging-evidence and fitting-target rejection rules
+
+The project uses the following audit rules to decide whether a diagnostic feature is suitable as primary aging evidence or as a primary fitting target for aging-model parameterization.
+
+A feature is **not recommended as a primary aging evidence / fitting target** if any of the following conditions apply:
+
+1. **Signal-to-smoothing-range ratio < 1**  
+   The aging-induced feature change is smaller than the variability caused by smoothing-window selection.
+
+2. **Monotonic fraction across smoothing < 0.75**  
+   The feature does not preserve a monotonic aging trend across different smoothing windows.
+
+3. **Signal appears only in the endpoint region**  
+   The feature is likely affected by cutoff-boundary amplification, usable-capacity shifts, or endpoint curvature.
+
+4. **Strong preprocessing dependence**  
+   The feature changes substantially with smoothing, interpolation, common-Q grid selection, or endpoint truncation.
+
+5. **Weak physical linkage to degradation-state variables**  
+   The feature is not consistently linked to SEI thickness, LLI, lithium loss, SEI capacity loss, or other degradation-state variables.
+
+6. **Mechanism non-uniqueness**  
+   The feature can plausibly be produced by multiple mechanisms, such as SEI growth, lithium plating, LAM, or resistance growth.
+
+7. **Signal magnitude below protocol sensitivity**  
+   The feature drift is smaller than the sensitivity introduced by the diagnostic protocol itself.
+
+Current project interpretation:
+
+- **Capacity RPT** is the recommended primary measurement-level fitting target for SEI-only aging.
+- **GITT-like finite-rest voltage points** and **C/25 central-window V(Q)** are secondary voltage-shape constraints.
+- **C/25 endpoint/full-window drift** is a boundary diagnostic only, because it is endpoint-amplified.
+- **ICA/DVA derivative features** remain auxiliary audit descriptors under stronger SEI-only aging and are not recommended as primary fitting targets.
+
