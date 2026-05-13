@@ -1,0 +1,7 @@
+metric_layer,evidence,strength,classification
+segment_quality,All C25 and C50 selected diagnostic discharge segments passed current and duration audit.,strong,rate-comparison diagnostic segments are valid
+curve_quality,All curves passed V(Q) quality audit = True,strong,C25 and C50 V(Q) curves are technically comparable
+VQ_rate_effect,max p95 |C50-C25| = 8.511 mV; max absolute |C50-C25| = 15.713 mV,data-backed,diagnostic-rate voltage effect quantified on common Q-grid
+ICA_rate_effect,max ICA peak Q shift = 0.0463 Ah; max ICA peak magnitude relative change = 3.766 %,audit-level,ICA rate sensitivity quantified
+DVA_rate_effect,max DVA median relative change = 0.266 %,audit-level,DVA central-shape rate sensitivity quantified; endpoint peak remains conservative
+overall,C25 and C50 slow-rate diagnostic outputs were compared at 0 and 20 cycles.,partially supported,C25 partially supported; derivative features remain protocol-sensitive

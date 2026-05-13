@@ -431,3 +431,77 @@ Tables:
 - `docs/tables/strict_ocv_ica_dva_classification_table.csv`
 - `docs/tables/strict_ocv_ica_dva_output_inventory.csv`
 
+
+## Notebook 18 — Slow-rate OCV-like validation audit
+
+Notebook 18 stress-tests the C/25 OCV-like diagnostic branch established in Notebook 17 by comparing it against a slower C/50 diagnostic branch.
+
+### Study design
+
+The audit compares two SEI-only aging checkpoints:
+
+- 0 cycles
+- 20 cycles
+
+Two diagnostic rates are evaluated:
+
+- C/25
+- C/50
+
+The aging mechanism, model configuration, checkpoint construction, and segment-selection logic remain aligned with Notebook 17. The only intentional variable is diagnostic discharge rate.
+
+### Main findings
+
+The selected diagnostic segments passed the rate-specific audit. C/25 branches show mean current ≈ 0.2 A and duration ≈ 1525–1530 min. C/50 branches show mean current ≈ 0.1 A and duration ≈ 3053–3062 min.
+
+All V(Q) curves passed the quality audit. C/50 produces a systematically higher terminal voltage than C/25, consistent with reduced ohmic and polarization losses at lower diagnostic current.
+
+The common-Q rate-effect audit shows:
+
+- mean C50–C25 voltage offset ≈ +6.1 to +6.2 mV,
+- p95 absolute C50–C25 difference ≈ 8.51 mV,
+- maximum absolute C50–C25 difference ≈ 14–16 mV near the low-voltage endpoint.
+
+The main V(Q) structure is broadly stable between C/25 and C/50, while endpoint regions remain rate-sensitive.
+
+ICA features are extractable at both rates. The dominant ICA peak remains present, but its peak position shows non-negligible rate sensitivity:
+
+- 0 cycles: C50–C25 ICA peak-Q shift ≈ +0.0463 Ah,
+- 20 cycles: C50–C25 ICA peak-Q shift ≈ −0.0168 Ah.
+
+DVA median magnitude is highly stable between C/25 and C/50, with relative changes below 0.3%. Endpoint-sensitive DVA peaks still require conservative interpretation.
+
+### Interpretation boundary
+
+Notebook 18 supports the practical use of C/25 as an OCV-like feasibility diagnostic branch, but only with qualified interpretation.
+
+C/25 is adequate for extracting smooth V(Q), ΔU(Q), ICA, and DVA descriptors at the audit level. However, comparison with C/50 shows that derivative features are not fully protocol-invariant. ICA peak position remains sensitive to diagnostic rate and should not be overinterpreted as a strict thermodynamic OCV feature.
+
+### Classification
+
+`C/25 OCV-like diagnostic branch = partially supported`
+
+Project-level wording:
+
+> C/25 is adequate for practical OCV-like feasibility analysis, but derivative-level interpretation remains protocol-sensitive.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/slow_rate_ocv_validation_VQ_overlay.png`
+- `docs/figures/slow_rate_ocv_validation_deltaV_rate_effect.png`
+- `docs/figures/slow_rate_ocv_validation_ica_overlay.png`
+- `docs/figures/slow_rate_ocv_validation_dva_overlay.png`
+
+Tables:
+
+- `docs/tables/slow_rate_ocv_validation_selected_segment_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_curve_summary.csv`
+- `docs/tables/slow_rate_ocv_validation_quality_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_rate_effect_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_feature_table.csv`
+- `docs/tables/slow_rate_ocv_validation_feature_rate_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_classification_table.csv`
+- `docs/tables/slow_rate_ocv_validation_output_inventory.csv`
+

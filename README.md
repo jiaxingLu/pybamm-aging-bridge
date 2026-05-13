@@ -451,3 +451,35 @@ Representative outputs:
 - `docs/tables/strict_ocv_ica_dva_classification_table.csv`
 - `docs/tables/strict_ocv_ica_dva_output_inventory.csv`
 
+
+## Slow-rate OCV-like validation audit
+
+Notebook 18 audits whether the C/25 OCV-like voltage-curve descriptors from Notebook 17 remain structurally stable when the diagnostic discharge rate is reduced to C/50.
+
+The audit compares two SEI-only aging checkpoints, 0 cycles and 20 cycles, under two diagnostic rates: C/25 and C/50. The selected diagnostic segments pass the rate-specific audit. C/25 branches show mean current ≈ 0.2 A and duration ≈ 1525–1530 min, while C/50 branches show mean current ≈ 0.1 A and duration ≈ 3053–3062 min.
+
+All V(Q) curves pass the quality audit. C/50 produces a systematic voltage elevation relative to C/25, consistent with lower polarization at lower diagnostic current. The mean C50–C25 voltage offset is approximately +6.1 to +6.2 mV, with p95 absolute difference ≈ 8.51 mV and endpoint-sensitive maximum differences of approximately 14–16 mV.
+
+ICA and DVA features are extractable at both diagnostic rates. ICA peak position shows rate sensitivity, with C50–C25 peak-Q shifts of approximately +0.0463 Ah at 0 cycles and −0.0168 Ah at 20 cycles. DVA median magnitude remains highly stable, with relative changes below 0.3%.
+
+Project-level classification:
+
+`C/25 OCV-like diagnostic branch = partially supported`
+
+C/25 remains adequate for practical OCV-like feasibility analysis, but derivative-level interpretation remains protocol-sensitive. The result supports C/25 as an engineering-practical diagnostic branch, but not as strict thermodynamic OCV.
+
+Representative outputs:
+
+- `docs/figures/slow_rate_ocv_validation_VQ_overlay.png`
+- `docs/figures/slow_rate_ocv_validation_deltaV_rate_effect.png`
+- `docs/figures/slow_rate_ocv_validation_ica_overlay.png`
+- `docs/figures/slow_rate_ocv_validation_dva_overlay.png`
+- `docs/tables/slow_rate_ocv_validation_selected_segment_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_curve_summary.csv`
+- `docs/tables/slow_rate_ocv_validation_quality_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_rate_effect_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_feature_table.csv`
+- `docs/tables/slow_rate_ocv_validation_feature_rate_audit.csv`
+- `docs/tables/slow_rate_ocv_validation_classification_table.csv`
+- `docs/tables/slow_rate_ocv_validation_output_inventory.csv`
+

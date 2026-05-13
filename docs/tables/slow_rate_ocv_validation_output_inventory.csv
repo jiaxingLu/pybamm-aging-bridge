@@ -1,0 +1,15 @@
+path,exists,size_kB
+data/slow_rate_ocv_validation_segment_audit.csv,True,25.49
+data/slow_rate_ocv_validation_selected_segment_audit.csv,True,1.19
+data/slow_rate_ocv_validation_curve_table.csv,True,685.58
+data/slow_rate_ocv_validation_curve_summary.csv,True,0.51
+data/slow_rate_ocv_validation_quality_audit.csv,True,0.79
+data/slow_rate_ocv_validation_rate_effect_audit.csv,True,0.41
+data/slow_rate_ocv_validation_feature_table.csv,True,0.76
+data/slow_rate_ocv_validation_derivative_table.csv,True,381.09
+data/slow_rate_ocv_validation_feature_rate_audit.csv,True,0.31
+data/slow_rate_ocv_validation_classification_table.csv,True,0.92
+figures/slow_rate_ocv_validation_VQ_overlay.png,True,187.3
+figures/slow_rate_ocv_validation_deltaV_rate_effect.png,True,223.05
+figures/slow_rate_ocv_validation_ica_overlay.png,True,232.36
+figures/slow_rate_ocv_validation_dva_overlay.png,True,186.22
