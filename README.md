@@ -628,3 +628,64 @@ Current project interpretation:
 - **C/25 endpoint/full-window drift** is a boundary diagnostic only, because it is endpoint-amplified.
 - **ICA/DVA derivative features** remain auxiliary audit descriptors under stronger SEI-only aging and are not recommended as primary fitting targets.
 
+
+## Resistance-growth fingerprint audit
+
+Notebook 23 audits whether pure contact / ohmic resistance growth produces a diagnostic fingerprint that is separable from SEI-only aging.
+
+A controlled contact-resistance perturbation was applied using the OKane2022 DFN with contact resistance enabled. The imposed contact-resistance levels were:
+
+- 0 mΩ
+- 2 mΩ
+- 5 mΩ
+- 10 mΩ
+
+The HPPC-like Ri(t) branch was performed at approximately 50.5% SOC using:
+
+- initial SOC = 1.0
+- C/3 discharge for 90 min
+- 60 min rest
+- 1C discharge pulse for 10 s
+- 600 s relaxation
+
+The imposed contact resistance was recovered almost exactly as an additive shift across all pulse-resistance windows:
+
+- `Ri_0.05s`
+- `Ri_0.1s`
+- `Ri_1s`
+- `Ri_10s`
+- `Ri_recovery_0.1s`
+- `Ri_recovery_1s`
+
+The maximum additive error across Ri windows was approximately `1.18e-10 mΩ`, effectively numerical zero.
+
+Raw recovery amplitude increased with contact resistance because it contains the instantaneous ohmic jump `I · R_contact`. After post-ohmic correction starting at `t_off + 0.1 s`, the relaxation descriptors became invariant across contact resistance:
+
+- post-ohmic recovery amplitude ≈ `26.3136 mV`
+- post-ohmic `tau_FG_eff` ≈ `25.5 s`
+- post-ohmic `t95` ≈ `171.1 s`
+- post-ohmic `t99` ≈ `409.1 s`
+- post-ohmic `tau_tail` ≈ `72.077 s`
+
+Capacity RPT showed only a weak usable-capacity boundary effect. At 10 mΩ contact resistance, capacity retention was approximately `99.9242%`, corresponding to an apparent capacity loss of `0.003828 Ah`.
+
+Project-level classification:
+
+`contact / ohmic resistance growth = Ri(t)-dominant fingerprint`
+
+Pure contact resistance growth is separable from SEI-only aging. It should be parameterized primarily using multi-window pulse resistance targets, not capacity fade or derivative-voltage features.
+
+Representative outputs:
+
+- `docs/figures/resistance_growth_multi_window_Ri.png`
+- `docs/figures/resistance_growth_raw_vs_corrected_relaxation.png`
+- `docs/figures/resistance_growth_capacity_retention.png`
+- `docs/tables/mechanism_fingerprint_registry_v0_2.csv`
+- `docs/tables/resistance_growth_hppc_descriptor_table.csv`
+- `docs/tables/resistance_growth_corrected_relaxation_descriptor_table.csv`
+- `docs/tables/resistance_growth_ri_additive_error_summary.csv`
+- `docs/tables/resistance_growth_corrected_relaxation_invariance_audit.csv`
+- `docs/tables/resistance_growth_capacity_rpt_table.csv`
+- `docs/tables/resistance_growth_fingerprint_summary_v0_2.csv`
+- `docs/tables/resistance_growth_classification_table.csv`
+

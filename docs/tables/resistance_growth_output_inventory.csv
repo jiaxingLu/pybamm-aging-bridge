@@ -1,0 +1,17 @@
+path,exists,size_kB
+data/mechanism_fingerprint_registry_v0_2.csv,True,2.71
+data/resistance_growth_hppc_segment_audit.csv,True,2.54
+data/resistance_growth_capacity_segment_audit.csv,True,1.49
+data/resistance_growth_hppc_descriptor_table.csv,True,2.44
+data/resistance_growth_corrected_relaxation_descriptor_table.csv,True,0.84
+data/resistance_growth_raw_vs_corrected_relaxation_audit.csv,True,1.33
+data/resistance_growth_ri_additive_audit.csv,True,1.27
+data/resistance_growth_ri_additive_error_summary.csv,True,0.67
+data/resistance_growth_corrected_relaxation_invariance_audit.csv,True,0.74
+data/resistance_growth_capacity_selected_segment_audit.csv,True,1.22
+data/resistance_growth_capacity_rpt_table.csv,True,0.82
+data/resistance_growth_fingerprint_summary_v0_2.csv,True,1.17
+data/resistance_growth_classification_table.csv,True,0.94
+figures/resistance_growth_multi_window_Ri.png,True,206.51
+figures/resistance_growth_raw_vs_corrected_relaxation.png,True,125.38
+figures/resistance_growth_capacity_retention.png,True,149.95

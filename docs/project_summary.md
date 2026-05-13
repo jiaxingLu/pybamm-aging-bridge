@@ -947,3 +947,219 @@ The next stage will compare mechanism-specific fingerprints across:
 
 The goal is to build a mechanism-to-observable fingerprint map and determine which mechanisms generate robust fitting targets beyond capacity RPT.
 
+
+## Notebook 23 — Resistance-growth fingerprint audit
+
+Notebook 23 audited whether pure ohmic/contact resistance growth produces a diagnostic fingerprint that can be separated from the SEI-only aging branch established in Notebooks 15–22.
+
+### Mechanism branch
+
+The branch was implemented as a controlled contact-resistance perturbation, not as a full electrochemical aging simulation.
+
+Contact resistance levels:
+
+- 0 mΩ
+- 2 mΩ
+- 5 mΩ
+- 10 mΩ
+
+Diagnostic layers:
+
+1. HPPC-like pulse branch at approximately 50% SOC
+2. C/3 capacity RPT
+3. multi-window Ri(t)
+4. recovery-side Ri
+5. raw and post-ohmic relaxation separation
+6. Mechanism Fingerprint Registry v0.2 output
+
+### Mechanism Fingerprint Registry v0.2
+
+Notebook 23 froze the following registry structure for subsequent mechanism-contrast notebooks:
+
+- `capacity_RPT`
+- `Ri_0.05s`
+- `Ri_0.1s`
+- `Ri_1s`
+- `Ri_10s`
+- `Ri_recovery_0.1s`
+- `Ri_recovery_1s`
+- `tau_FG_eff`
+- `t95`
+- `t99`
+- `tau_tail`
+- `recovery_amplitude`
+- `recovery_area`
+- `C25_central_VQ`
+- `GITT_finite_rest`
+- `ICA_DVA_central`
+- `endpoint_boundary`
+- `best_fitting_targets`
+- `rejection_flags`
+
+This registry will be reused for the LAM, plating, and cross-mechanism synthesis branches.
+
+### SOC condition of Ri(t)
+
+The HPPC-like Ri(t) branch was performed at approximately mid-SOC.
+
+Protocol:
+
+- initial SOC = 1.0
+- C/3 discharge for 90 min
+- 60 min rest
+- 1C discharge pulse for 10 s
+- 600 s relaxation
+
+Because the OKane2022 cell capacity in this branch is approximately `5.05 Ah`, the 90 min C/3 pre-discharge removes approximately `2.50 Ah`. Therefore, the 1C pulse is applied at approximately:
+
+`SOC ≈ 1 − 2.50 / 5.05 ≈ 50.5%`
+
+Notebook 23 is therefore a single-SOC mechanism-isolation audit, not a full SOC-resolved Ri map.
+
+### Ri(t) / multi-window resistance fingerprint
+
+The imposed contact resistance was recovered almost exactly as an additive shift in every Ri(t) window.
+
+For example, `Ri_0.05s` increased as:
+
+- 0 mΩ contact resistance: `24.4075 mΩ`
+- 2 mΩ contact resistance: `26.4075 mΩ`
+- 5 mΩ contact resistance: `29.4075 mΩ`
+- 10 mΩ contact resistance: `34.4075 mΩ`
+
+The same additive behavior was observed for:
+
+- `Ri_0.05s`
+- `Ri_0.1s`
+- `Ri_1s`
+- `Ri_10s`
+- `Ri_recovery_0.1s`
+- `Ri_recovery_1s`
+
+The maximum additive error across Ri windows was approximately `1.18e-10 mΩ`, effectively numerical zero.
+
+Core fingerprint:
+
+`multi-window Ri(t) = baseline Ri(t) + imposed R_contact`
+
+### Raw recovery amplitude versus corrected post-ohmic relaxation
+
+Raw recovery amplitude increased with contact resistance:
+
+- 0 mΩ: `146.78 mV`
+- 2 mΩ: `156.78 mV`
+- 5 mΩ: `171.78 mV`
+- 10 mΩ: `196.78 mV`
+
+This increase corresponds directly to the instantaneous ohmic jump:
+
+`ΔU = I_pulse · R_contact`
+
+Because the pulse current is approximately 5 A:
+
+- 2 mΩ corresponds to approximately 10 mV
+- 5 mΩ corresponds to approximately 25 mV
+- 10 mΩ corresponds to approximately 50 mV
+
+Therefore, raw recovery amplitude is not a pure relaxation descriptor. It is a mixed observable:
+
+`raw recovery = instantaneous ohmic jump + post-ohmic relaxation`
+
+After removing the immediate current-off jump by starting the relaxation analysis at `t_off + 0.1 s`, the corrected post-ohmic relaxation descriptors were invariant across contact-resistance levels:
+
+- post-ohmic recovery amplitude: `26.3136 mV`
+- post-ohmic `tau_FG_eff`: `25.5 s`
+- post-ohmic `t95`: `171.1 s`
+- post-ohmic `t99`: `409.1 s`
+- post-ohmic `tau_tail`: `72.077 s`
+
+This shows that pure contact resistance changes the instantaneous voltage response but does not materially change post-ohmic relaxation dynamics.
+
+### Capacity RPT response
+
+The C/3 capacity RPT showed only a weak usable-capacity boundary effect.
+
+At 10 mΩ contact resistance:
+
+- capacity retention ≈ `99.9242%`
+- apparent capacity loss ≈ `0.003828 Ah`
+- capacity loss ≈ `0.0758%`
+
+This is much smaller than the capacity fade observed in the stronger SEI-only branch. Therefore, contact resistance does not produce a capacity-dominant fingerprint. The observed capacity change is best interpreted as a terminal-voltage cutoff / usable-capacity effect under the 2.5 V boundary, not as true lithium inventory loss.
+
+### Integrated interpretation
+
+Notebook 23 establishes a clean contrast against the SEI-only branch.
+
+SEI-only aging from Notebooks 20–22 is best described as:
+
+`capacity-dominant, voltage-secondary, derivative-auxiliary`
+
+Pure contact / ohmic resistance growth is best described as:
+
+`Ri(t)-dominant, post-ohmic-relaxation-invariant, capacity-weak`
+
+For contact resistance growth, the recommended primary fitting targets are:
+
+- `Ri_0.05s`
+- `Ri_0.1s`
+- `Ri_1s`
+- `Ri_10s`
+- `Ri_recovery_0.1s`
+- `Ri_recovery_1s`
+
+The following should not be used as primary relaxation evidence:
+
+- raw recovery amplitude
+- raw recovery area
+- raw `t95` / `t99` without post-ohmic correction
+
+These raw recovery descriptors are confounded by the instantaneous ohmic jump.
+
+### Project-level classification
+
+`contact / ohmic resistance growth = Ri(t)-dominant fingerprint`
+
+Project-level wording:
+
+> Pure contact resistance growth produces a clean, window-invariant additive increase in pulse-based Ri(t), while corrected post-ohmic relaxation dynamics remain unchanged. Capacity RPT shows only a weak voltage-boundary effect. This mechanism is therefore separable from SEI-only aging and should be parameterized primarily using multi-window pulse resistance targets rather than capacity or derivative-voltage features.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/resistance_growth_multi_window_Ri.png`
+- `docs/figures/resistance_growth_raw_vs_corrected_relaxation.png`
+- `docs/figures/resistance_growth_capacity_retention.png`
+
+Tables:
+
+- `docs/tables/mechanism_fingerprint_registry_v0_2.csv`
+- `docs/tables/resistance_growth_hppc_descriptor_table.csv`
+- `docs/tables/resistance_growth_corrected_relaxation_descriptor_table.csv`
+- `docs/tables/resistance_growth_raw_vs_corrected_relaxation_audit.csv`
+- `docs/tables/resistance_growth_ri_additive_error_summary.csv`
+- `docs/tables/resistance_growth_corrected_relaxation_invariance_audit.csv`
+- `docs/tables/resistance_growth_capacity_rpt_table.csv`
+- `docs/tables/resistance_growth_fingerprint_summary_v0_2.csv`
+- `docs/tables/resistance_growth_classification_table.csv`
+- `docs/tables/resistance_growth_output_inventory.csv`
+
+### Next step
+
+Recommended next notebook:
+
+`24_LAM_fingerprint_audit.ipynb`
+
+The purpose is to test whether loss of active material produces a voltage-shape and derivative-feature fingerprint that is stronger than SEI-only aging and fundamentally different from contact resistance growth.
+
+Expected LAM-sensitive layers:
+
+- capacity RPT
+- C/25 central-window V(Q)
+- GITT-like finite-rest voltage points
+- ICA/DVA central features
+- endpoint / usable-capacity boundary behavior
+
+The same Mechanism Fingerprint Registry v0.2 should be reused so that SEI, resistance growth, LAM, and plating can later be compared in a unified cross-mechanism synthesis notebook.
+

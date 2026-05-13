@@ -1,0 +1,20 @@
+metric_layer,description,primary_use,risk
+capacity_RPT,External discharge capacity / capacity fade from controlled RPT branch,primary fitting target for capacity-loss mechanisms,voltage cutoff can mix true capacity loss with usable-capacity boundary shift
+Ri_0.05s,Pulse-on resistance at 50 ms,ohmic / very-fast polarization target,trigger and sampling-window sensitive
+Ri_0.1s,Pulse-on resistance at 100 ms,ohmic / fast polarization target,still partly sensitive to pulse detection and sampling
+Ri_1s,Pulse-on resistance at 1 s,fast-to-medium polarization response,already includes non-ohmic transient contribution
+Ri_10s,Pulse-on resistance near pulse end at 10 s,slow polarization / diffusion-sensitive resistance,strongly time-window dependent
+Ri_recovery_0.1s,Pulse-off recovery resistance at 100 ms after current interruption,current-off ohmic / fast recovery descriptor,sensitive to pulse-off timing
+Ri_recovery_1s,Pulse-off recovery resistance at 1 s after current interruption,short recovery descriptor,mixes ohmic and early relaxation response
+tau_FG_eff,Effective 63.2% voltage-recovery time after pulse-off,secondary relaxation descriptor,depends on U_inf and relaxation window
+t95,Time to reach 95% of finite-window recovery amplitude,relaxation completion descriptor,sensitive to final-voltage definition
+t99,Time to reach 99% of finite-window recovery amplitude,slow-tail recovery descriptor,sensitive to numerical floor and U_inf drift
+tau_tail,Approximate tail time constant from late relaxation residual,slow relaxation audit,fit-window and residual-floor sensitive
+recovery_amplitude,Finite-window voltage recovery amplitude after pulse-off,secondary relaxation / polarization descriptor,depends on pulse depth and final rest duration
+recovery_area,Integral of voltage recovery path over the relaxation window,aggregate relaxation-energy-like descriptor,depends on rest duration and U_inf definition
+C25_central_VQ,C/25 central-window V(Q) drift after endpoint control,secondary voltage-shape constraint,protocol-sensitive; endpoint must be excluded
+GITT_finite_rest,Finite-rest OCV-like voltage points from pulse-rest protocol,secondary quasi-equilibrium voltage-shape target,finite rest is not strict thermodynamic OCV
+ICA_DVA_central,Central-window derivative voltage features,auxiliary audit descriptor unless smoothing-stable,smoothing and curvature sensitive
+endpoint_boundary,Endpoint / cutoff boundary behavior,boundary diagnostic only,cutoff-boundary amplification and usable-capacity shifts
+best_fitting_targets,Ranked target hierarchy for parameterization,model calibration design,must respect feature qualification rules
+rejection_flags,Flags from aging-evidence rejection rules,prevent artifact-driven fitting,none; mandatory audit layer

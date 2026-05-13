@@ -1,0 +1,7 @@
+descriptor,min,max,range,cv_pct,classification
+post_ohmic_recovery_amplitude_mV,26.313580285708404,26.313580287550042,1.8416379532482097e-09,2.488327451419026e-09,invariant across contact resistance
+post_ohmic_tau_FG_eff_s,25.5,25.5,0.0,0.0,invariant across contact resistance
+post_ohmic_t95_s,171.10000000000036,171.10000000000036,0.0,0.0,invariant across contact resistance
+post_ohmic_t99_s,409.10000000000036,409.10000000000036,0.0,0.0,invariant across contact resistance
+post_ohmic_tau_tail_s,72.07703788184538,72.07703788891034,7.0649548433721066e-09,3.8342793836484636e-09,invariant across contact resistance
+post_ohmic_recovery_area_mV_s,14724.768574179285,14724.768575336311,1.1570264177862555e-06,2.7942323559838453e-09,contact-resistance sensitive

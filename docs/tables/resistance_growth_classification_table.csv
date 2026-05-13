@@ -1,0 +1,6 @@
+metric_layer,evidence,strength,classification
+Ri_additive_response,Maximum additive error across Ri windows = 1.182734e-10 mΩ.,strong,multi-window Ri(t) is the primary contact-resistance fingerprint
+corrected_relaxation,Maximum range across corrected relaxation descriptors = 1.157026e-06.,strong,post-ohmic relaxation dynamics are invariant under contact resistance
+raw_recovery_amplitude,Raw recovery amplitude increases exactly with I·R_contact contribution.,critical boundary,raw recovery amplitude is ohmic-jump confounded and must not be used as primary relaxation evidence
+capacity_RPT,"At 10 mΩ, capacity loss = 0.003828 Ah (0.0758 %).",weak / boundary-level,capacity RPT shows only weak usable-capacity effect under pure contact resistance
+overall,Controlled contact resistance produces Ri-dominant fingerprint with invariant post-ohmic relaxation.,supported,pure ohmic/contact resistance growth is separable from SEI-only capacity-dominant aging

@@ -1,0 +1,7 @@
+Ri_metric,max_abs_additive_error_mOhm,mean_abs_additive_error_mOhm,classification
+Ri_0.05s_mOhm,4.454392410480068e-11,2.925896562070799e-11,additive contact-resistance fingerprint
+Ri_0.1s_mOhm,3.4066971466018003e-11,2.3681205144991207e-11,additive contact-resistance fingerprint
+Ri_1s_mOhm,1.1827339108094748e-10,4.849217323984097e-11,additive contact-resistance fingerprint
+Ri_10s_mOhm,1.099138557947299e-10,7.730468117491303e-11,additive contact-resistance fingerprint
+Ri_recovery_0.1s_mOhm,4.0543568502471317e-11,2.9010275663191958e-11,additive contact-resistance fingerprint
+Ri_recovery_1s_mOhm,9.668710276855563e-11,3.669005839886571e-11,additive contact-resistance fingerprint
