@@ -585,3 +585,97 @@ Tables:
 - `docs/tables/gitt_like_ocv_classification_table.csv`
 - `docs/tables/gitt_like_ocv_output_inventory.csv`
 
+
+## Notebook 20 — Stronger SEI-only aging checkpoint audit
+
+Notebook 20 audits whether increasing SEI-only aging severity from 20 cycles to 50 and 100 cycles amplifies the degradation-state signal within the same SEI-only branch.
+
+### Study design
+
+The degradation mechanism is unchanged relative to the previous SEI-only notebooks:
+
+- OKane2022 parameter set,
+- solvent-diffusion-limited SEI,
+- lithium plating disabled,
+- LAM disabled,
+- particle mechanics disabled,
+- SEI porosity change disabled,
+- isothermal model.
+
+The only intentional change is aging checkpoint severity:
+
+- 0 cycles,
+- 20 cycles,
+- 50 cycles,
+- 100 cycles.
+
+### Main findings
+
+The stronger aging checkpoint generation completed successfully. The total runtime was approximately 1.53 min.
+
+Four degradation-state metrics were extracted successfully:
+
+- SEI thickness,
+- loss of lithium inventory (LLI),
+- total lithium lost,
+- capacity lost to negative SEI.
+
+All four metrics increased monotonically with cycle number.
+
+From 0 to 100 cycles:
+
+- SEI thickness increased from approximately 5.01 nm to 18.66 nm;
+- LLI increased from approximately 0.00009% to 0.1687%;
+- total lithium lost increased from approximately 2.65e-7 mol to 4.79e-4 mol;
+- SEI capacity loss increased from approximately 0.000007 Ah to 0.01284 Ah.
+
+Relative to the 20-cycle checkpoint, the 100-cycle checkpoint increased the degradation-state signal by approximately 3.06× for all available degradation-state metrics.
+
+The monotonicity audit passed:
+
+- 4/4 available degradation-state metrics were monotonic non-decreasing;
+- 4/4 available metrics showed at least 3× amplification at 100 cycles relative to 20 cycles.
+
+### Interpretation boundary
+
+Notebook 20 audits aging severity only. It does not establish diagnostic uniqueness.
+
+The result confirms that 50-cycle and 100-cycle checkpoints provide stronger SEI-only aging states for subsequent diagnostic branches. It does not by itself prove that voltage-curve, ICA/DVA, or GITT-like descriptors become mechanism-unique fingerprints.
+
+The absolute degradation magnitude remains moderate. At 100 cycles, SEI capacity loss is approximately 0.01284 Ah and LLI is approximately 0.1687%. Therefore, stronger downstream diagnostic signals are expected relative to 20 cycles, but large voltage or derivative-feature shifts should not be assumed in advance.
+
+### Classification
+
+`50/100-cycle SEI-only aging checkpoints = supported`
+
+Project-level wording:
+
+> Stronger SEI-only aging checkpoints at 50 and 100 cycles provide monotonic and amplified degradation-state signals. They are suitable for downstream diagnostic audits, but diagnostic uniqueness remains to be tested.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/stronger_sei_aging_degradation_state.png`
+- `docs/figures/stronger_sei_aging_capacity_loss.png`
+
+Tables:
+
+- `docs/tables/stronger_sei_aging_state_table.csv`
+- `docs/tables/stronger_sei_aging_monotonicity_audit.csv`
+- `docs/tables/stronger_sei_aging_classification_table.csv`
+
+### Next step
+
+Recommended next notebook:
+
+`21_stronger_sei_diagnostic_branch_audit.ipynb`
+
+Priority branches:
+
+1. capacity RPT / external capacity check,
+2. C/25 OCV-like V(Q),
+3. GITT-like finite-rest OCV reconstruction.
+
+ICA/DVA interpretation should remain secondary until voltage-curve drift becomes clearly larger than protocol and smoothing sensitivity.
+

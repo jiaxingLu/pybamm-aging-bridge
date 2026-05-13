@@ -1,0 +1,5 @@
+metric_layer,evidence,strength,classification
+degradation_state_availability,4 degradation-state metrics available.,data-backed,degradation-state extraction available
+monotonicity,4/4 available metrics are monotonic non-decreasing.,strong,SEI-only degradation state increases monotonically
+amplification,4/4 available metrics show >=3x amplification at 100 cycles relative to 20 cycles.,screening-level,stronger checkpoints likely improve diagnostic observability
+overall,0/20/50/100 cycle SEI-only checkpoints were generated and audited.,supported,50/100-cycle SEI-only aging checkpoints provide stronger aging severity

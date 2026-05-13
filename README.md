@@ -526,3 +526,33 @@ Representative outputs:
 - `docs/tables/gitt_like_ocv_classification_table.csv`
 - `docs/tables/gitt_like_ocv_output_inventory.csv`
 
+
+## Stronger SEI-only aging checkpoint audit
+
+Notebook 20 extends the SEI-only aging branch from 20 cycles to stronger checkpoints at 50 and 100 cycles.
+
+The degradation mechanism is unchanged: OKane2022 with solvent-diffusion-limited SEI only, with plating, LAM, particle mechanics, SEI porosity change, and thermal coupling disabled.
+
+The audit confirms that all available degradation-state metrics increase monotonically from 0 to 100 cycles:
+
+- SEI thickness increases from approximately 5.01 nm to 18.66 nm.
+- LLI increases from approximately 0.00009% to 0.1687%.
+- total lithium lost increases from approximately 2.65e-7 mol to 4.79e-4 mol.
+- SEI capacity loss increases from approximately 0.000007 Ah to 0.01284 Ah.
+
+Relative to the 20-cycle checkpoint, the 100-cycle checkpoint amplifies all available degradation-state metrics by approximately 3.06×.
+
+Project-level classification:
+
+`50/100-cycle SEI-only aging checkpoints = supported`
+
+The stronger checkpoints are suitable for downstream diagnostic audits. However, this notebook does not yet establish a mechanism-unique SEI diagnostic fingerprint; it only confirms monotonic and amplified SEI-only aging severity.
+
+Representative outputs:
+
+- `docs/figures/stronger_sei_aging_degradation_state.png`
+- `docs/figures/stronger_sei_aging_capacity_loss.png`
+- `docs/tables/stronger_sei_aging_state_table.csv`
+- `docs/tables/stronger_sei_aging_monotonicity_audit.csv`
+- `docs/tables/stronger_sei_aging_classification_table.csv`
+
