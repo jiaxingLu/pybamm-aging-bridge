@@ -1,0 +1,6 @@
+metric_layer,evidence,strength,classification
+segment_quality,All selected C/3 capacity RPT discharge segments passed current and duration audit.,strong,capacity RPT diagnostic segments are valid
+capacity_fade,"100-cycle capacity fade = 0.4696 %, capacity loss = 0.023715 Ah.",data-backed,external capacity fade is quantifiable
+monotonicity,Q_dis decreases monotonically with aging = True.,strong,capacity RPT follows aging severity
+linkage,"Capacity loss was compared against SEI thickness, LLI, lithium loss, and SEI capacity loss.",audit-level,"capacity RPT can be linked to degradation-state metrics, but mechanism uniqueness is not yet proven"
+overall,Capacity RPT was run at 0/20/50/100-cycle SEI-only checkpoints.,supported,capacity RPT detects stronger SEI-only aging

@@ -679,3 +679,191 @@ Priority branches:
 
 ICA/DVA interpretation should remain secondary until voltage-curve drift becomes clearly larger than protocol and smoothing sensitivity.
 
+
+## Notebook 21 — Stronger SEI diagnostic branch audit
+
+Notebook 21 audits whether the stronger SEI-only aging checkpoints established in Notebook 20 produce clearer downstream diagnostic observables.
+
+### Study design
+
+The diagnostic branches were evaluated at four SEI-only aging checkpoints:
+
+- 0 cycles,
+- 20 cycles,
+- 50 cycles,
+- 100 cycles.
+
+The degradation mechanism remained unchanged:
+
+- OKane2022 parameter set,
+- solvent-diffusion-limited SEI,
+- lithium plating disabled,
+- LAM disabled,
+- particle mechanics disabled,
+- SEI porosity change disabled,
+- isothermal model.
+
+Three diagnostic layers were audited:
+
+1. capacity RPT / external capacity check,
+2. C/25 OCV-like V(Q),
+3. GITT-like finite-rest OCV reconstruction.
+
+### Phase A — Capacity RPT
+
+The C/3 capacity RPT branch was technically valid at all checkpoints. The selected discharge segments passed the current and duration audit.
+
+The external discharge capacity decreased monotonically with aging:
+
+- 0 cycles: `5.049518 Ah`,
+- 20 cycles: `5.033878 Ah`,
+- 50 cycles: `5.030167 Ah`,
+- 100 cycles: `5.025803 Ah`.
+
+At 100 cycles, the external capacity fade was approximately `0.4696 %`, corresponding to a capacity loss of approximately `0.023715 Ah` relative to the 0-cycle reference.
+
+Capacity loss correlated strongly with SEI-state degradation metrics, with correlation coefficients of approximately `0.93` against SEI thickness, LLI, total lithium lost, and SEI capacity loss.
+
+Classification:
+
+`capacity RPT detects stronger SEI-only aging = supported`
+
+The external capacity loss should not be interpreted as a direct one-to-one readout of SEI capacity loss. It also includes voltage-boundary and usable-capacity effects under the 2.5 V cutoff.
+
+### Phase B — C/25 OCV-like V(Q)
+
+The C/25 OCV-like diagnostic branch was technically valid at all checkpoints. All selected C/25 discharge segments passed the current and duration audit, and all V(Q) curves passed the quality audit.
+
+The C/25 discharge capacity decreased monotonically:
+
+- 0 cycles: `5.100618 Ah`,
+- 20 cycles: `5.085432 Ah`,
+- 50 cycles: `5.081950 Ah`,
+- 100 cycles: `5.077778 Ah`.
+
+The full-window voltage drift relative to the 0-cycle reference became more negative with aging. At 100 cycles:
+
+- full-window mean ΔU ≈ `−5.626 mV`,
+- full-window p95 `|ΔU| ≈ 20.186 mV`,
+- full-window max `|ΔU| ≈ 115.120 mV`.
+
+However, the central-window audit showed that the strongest full-window drift is dominated by low-voltage endpoint amplification.
+
+For the central window `Q = 0.20–4.50 Ah`, the 100-cycle drift was:
+
+- central-window mean ΔU ≈ `−2.694 mV`,
+- central-window median ΔU ≈ `−2.195 mV`,
+- central-window p95 `|ΔU| ≈ 6.251 mV`.
+
+The endpoint region was much larger:
+
+- endpoint mean ΔU ≈ `−28.933 mV`,
+- endpoint p95 `|ΔU| ≈ 102.539 mV`,
+- endpoint max `|ΔU| ≈ 115.120 mV`.
+
+The endpoint-amplification flag was true for 20, 50, and 100 cycles.
+
+Revised classification:
+
+`C/25 V(Q) drift = partially supported / endpoint-amplified`
+
+C/25 V(Q) follows aging severity, but the strongest signal is concentrated near the low-voltage cutoff. The central-window drift is monotonic but moderate.
+
+### Phase C — GITT-like finite-rest OCV reconstruction
+
+The GITT-like diagnostic branch was technically valid at all checkpoints. Each checkpoint produced 16 valid C/10 pulse-rest pairs with:
+
+- pulse current ≈ `0.5 A`,
+- pulse duration = `30 min`,
+- rest duration = `60 min`,
+- cumulative reconstructed Q-window = `4.0 Ah`.
+
+The finite-rest reconstruction quality audit passed at all checkpoints. The reconstructed rest-end voltages were smooth and monotonic, Q increased strictly, pulse charge was consistent, and all rest recovery amplitudes remained positive.
+
+The GITT-like finite-rest voltage drift relative to the 0-cycle reference became more negative with aging:
+
+- 20 cycles: mean ΔU ≈ `−1.974 mV`,
+- 50 cycles: mean ΔU ≈ `−2.125 mV`,
+- 100 cycles: mean ΔU ≈ `−2.280 mV`.
+
+At 100 cycles:
+
+- mean ΔU ≈ `−2.280 mV`,
+- median ΔU ≈ `−2.109 mV`,
+- p95 `|ΔU| ≈ 4.145 mV`,
+- max `|ΔU| ≈ 4.939 mV`.
+
+The GITT-like drift is much weaker than the C/25 endpoint-amplified full-window drift, but it is smoother and less dominated by cutoff artifacts.
+
+Rest recovery amplitude remained an auxiliary descriptor. At 100 cycles, the mean recovery-amplitude shift was approximately `−0.182 mV`, which is too small to serve as a dominant aging fingerprint.
+
+Classification:
+
+`GITT-like finite-rest voltage drift = partially supported`
+
+It follows aging severity and is technically clean, but the signal remains weak.
+
+### Integrated interpretation
+
+Notebook 21 shows that stronger SEI-only aging checkpoints produce clearer diagnostic observables, but the observability hierarchy is not uniform across diagnostic layers.
+
+The strongest and cleanest downstream observable is capacity RPT. It detects monotonic external capacity fade and links strongly to degradation-state metrics.
+
+C/25 V(Q) also responds to aging, but its largest signal is endpoint-amplified. Its central-window voltage drift is monotonic but moderate.
+
+GITT-like finite-rest reconstruction provides cleaner quasi-equilibrium-like voltage points with less endpoint amplification, but its voltage drift remains weak at the tested aging severity.
+
+Therefore, the SEI-only branch is best classified as:
+
+`capacity-dominant with weak-to-moderate voltage-curve signatures`
+
+### Project-level classification
+
+`SEI-only stronger-checkpoint diagnostics = capacity-dominant, voltage-secondary`
+
+Project-level wording:
+
+> Stronger SEI-only aging is clearly observable in external capacity RPT and degradation-state variables. C/25 and GITT-like voltage descriptors show monotonic aging-linked drift, but their interpretation remains secondary: C/25 is endpoint-amplified, while GITT-like finite-rest drift is cleaner but weak. Mechanism uniqueness remains unproven.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/stronger_sei_diag_capacity_retention.png`
+- `docs/figures/stronger_sei_diag_capacity_vs_degradation.png`
+- `docs/figures/stronger_sei_diag_c25_VQ_overlay.png`
+- `docs/figures/stronger_sei_diag_c25_deltaU_vs_Q.png`
+- `docs/figures/stronger_sei_diag_gitt_reconstruction_overlay.png`
+- `docs/figures/stronger_sei_diag_gitt_deltaU_vs_Q.png`
+- `docs/figures/stronger_sei_diag_gitt_recovery_amplitude.png`
+
+Tables:
+
+- `docs/tables/stronger_sei_diag_aging_state_table.csv`
+- `docs/tables/stronger_sei_diag_capacity_rpt_table.csv`
+- `docs/tables/stronger_sei_diag_capacity_linkage_audit.csv`
+- `docs/tables/stronger_sei_diag_capacity_classification_table.csv`
+- `docs/tables/stronger_sei_diag_c25_central_window_drift_audit.csv`
+- `docs/tables/stronger_sei_diag_c25_full_vs_central_audit.csv`
+- `docs/tables/stronger_sei_diag_c25_revised_classification_table.csv`
+- `docs/tables/stronger_sei_diag_gitt_drift_audit.csv`
+- `docs/tables/stronger_sei_diag_gitt_linkage_audit.csv`
+- `docs/tables/stronger_sei_diag_gitt_classification_table.csv`
+- `docs/tables/stronger_sei_diag_output_inventory.csv`
+
+### Next step
+
+Recommended next notebook:
+
+`22_derivative_feature_sensitivity_under_stronger_sei.ipynb`
+
+This notebook should audit whether ICA/DVA features become more informative under 0/20/50/100-cycle SEI-only aging, while explicitly controlling for:
+
+1. smoothing-window sensitivity,
+2. endpoint-region artifacts,
+3. common-Q window selection,
+4. comparison against C/25 central-window drift,
+5. comparison against GITT-like finite-rest drift.
+
+If derivative features remain weak or smoothing-sensitive, the SEI-only branch should be classified as capacity-dominant rather than voltage-derivative-dominant. Subsequent mechanism branches should then prioritize plating or LAM.
+

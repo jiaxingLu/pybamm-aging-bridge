@@ -1,0 +1,5 @@
+cycle,sei_thickness_m,sei_thickness_m_source,lli_percent,lli_percent_source,total_lithium_lost_mol,total_lithium_lost_mol_source,sei_capacity_loss_Ah,sei_capacity_loss_Ah_source
+0,5.00757281415115e-09,X-averaged negative SEI thickness [m],9.347460243702699e-05,Loss of lithium inventory [%],2.65436179536227e-07,Total lithium lost [mol],7.1140828277454354e-06,Loss of capacity to negative SEI [A.h]
+20,9.471876490309945e-09,X-averaged negative SEI thickness [m],0.055198354062738986,Loss of lithium inventory [%],0.00015674461158066144,Total lithium lost [mol],0.00420098778506153,Loss of capacity to negative SEI [A.h]
+50,1.366499472733144e-08,X-averaged negative SEI thickness [m],0.10695587117696448,Loss of lithium inventory [%],0.00030371841277859746,Total lithium lost [mol],0.00814010339641983,Loss of capacity to negative SEI [A.h]
+100,1.8664430099574105e-08,X-averaged negative SEI thickness [m],0.16866611780562835,Loss of lithium inventory [%],0.0004789545915127036,Total lithium lost [mol],0.01283669261942412,Loss of capacity to negative SEI [A.h]

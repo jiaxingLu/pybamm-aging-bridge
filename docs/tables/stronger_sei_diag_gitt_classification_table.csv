@@ -1,0 +1,8 @@
+metric_layer,evidence,strength,classification
+segment_quality,Each checkpoint produced 16 valid C/10 pulse-rest pairs.,strong,GITT-like pulse-rest segmentation is technically clean
+reconstruction_quality,All GITT-like reconstruction quality checks passed = True,strong,finite-rest OCV-like points are smooth and monotonic
+voltage_drift,100-cycle mean ΔU = -2.280 mV; p95 |ΔU| = 4.145 mV.,data-backed,GITT-like finite-rest voltage drift is quantifiable
+monotonicity,Mean finite-rest ΔU becomes monotonically more negative with aging = True.,strong,GITT-like voltage drift follows aging severity
+recovery_amplitude,100-cycle mean recovery-amplitude shift = -0.182 mV.,audit-level,rest recovery amplitude remains an auxiliary relaxation descriptor
+linkage,"GITT-like finite-rest voltage drift was compared against SEI thickness, LLI, lithium loss, and SEI capacity loss.",audit-level,"finite-rest voltage drift can be linked to degradation-state metrics, but mechanism uniqueness is not yet proven"
+overall,GITT-like finite-rest reconstruction was run at 0/20/50/100-cycle SEI-only checkpoints.,partially supported,GITT-like finite-rest voltage drift follows aging severity but remains weak

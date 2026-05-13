@@ -556,3 +556,40 @@ Representative outputs:
 - `docs/tables/stronger_sei_aging_monotonicity_audit.csv`
 - `docs/tables/stronger_sei_aging_classification_table.csv`
 
+
+## Stronger SEI diagnostic branch audit
+
+Notebook 21 audits whether the stronger 0/20/50/100-cycle SEI-only checkpoints produce clearer downstream diagnostic observables.
+
+Three diagnostic layers are evaluated:
+
+1. capacity RPT / external capacity check,
+2. C/25 OCV-like V(Q),
+3. GITT-like finite-rest OCV reconstruction.
+
+Capacity RPT provides the clearest downstream observable. The external discharge capacity decreases monotonically from `5.049518 Ah` at 0 cycles to `5.025803 Ah` at 100 cycles. At 100 cycles, the capacity fade is approximately `0.4696 %`, corresponding to a capacity loss of approximately `0.023715 Ah`. The capacity-loss trend links strongly to SEI-state degradation metrics, with correlation coefficients of approximately `0.93`.
+
+C/25 OCV-like V(Q) is technically valid and aging-sensitive, but full-window interpretation is endpoint-amplified. The full-window 100-cycle mean voltage drift is approximately `−5.626 mV`, with p95 `|ΔU| ≈ 20.186 mV` and max `|ΔU| ≈ 115.120 mV`. After central-window control over `Q = 0.20–4.50 Ah`, the 100-cycle mean drift is reduced to approximately `−2.694 mV`, with p95 `|ΔU| ≈ 6.251 mV`. The endpoint-amplification flag is true.
+
+GITT-like finite-rest reconstruction is technically clean and less endpoint-amplified, but the voltage signal remains weak. At 100 cycles, the finite-rest mean voltage drift is approximately `−2.280 mV`, with p95 `|ΔU| ≈ 4.145 mV`. Rest recovery amplitude remains an auxiliary descriptor, with a 100-cycle mean shift of approximately `−0.182 mV`.
+
+Project-level classification:
+
+`SEI-only stronger-checkpoint diagnostics = capacity-dominant, voltage-secondary`
+
+Stronger SEI-only aging is clearly observable in external capacity RPT and degradation-state variables. C/25 and GITT-like voltage descriptors show monotonic aging-linked drift, but their interpretation remains secondary: C/25 is endpoint-amplified, while GITT-like finite-rest drift is cleaner but weak. Mechanism uniqueness remains unproven.
+
+Representative outputs:
+
+- `docs/figures/stronger_sei_diag_capacity_retention.png`
+- `docs/figures/stronger_sei_diag_capacity_vs_degradation.png`
+- `docs/figures/stronger_sei_diag_c25_VQ_overlay.png`
+- `docs/figures/stronger_sei_diag_c25_deltaU_vs_Q.png`
+- `docs/figures/stronger_sei_diag_gitt_reconstruction_overlay.png`
+- `docs/figures/stronger_sei_diag_gitt_deltaU_vs_Q.png`
+- `docs/figures/stronger_sei_diag_gitt_recovery_amplitude.png`
+- `docs/tables/stronger_sei_diag_capacity_rpt_table.csv`
+- `docs/tables/stronger_sei_diag_c25_revised_classification_table.csv`
+- `docs/tables/stronger_sei_diag_gitt_classification_table.csv`
+- `docs/tables/stronger_sei_diag_output_inventory.csv`
+

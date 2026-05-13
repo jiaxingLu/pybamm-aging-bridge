@@ -1,0 +1,8 @@
+metric_layer,evidence,strength,classification
+segment_quality,All selected C/25 diagnostic discharge segments passed current and duration audit.,strong,C/25 diagnostic segments are valid
+curve_quality,All C/25 V(Q) curves passed quality audit = True,strong,C/25 V(Q) curves are technically comparable
+central_window_drift,100-cycle central-window mean ΔU = -2.694 mV; central p95 |ΔU| = 6.251 mV.,data-backed,central-window C/25 voltage drift is quantifiable
+central_monotonicity,Central-window mean ΔU becomes monotonically more negative with aging = True.,strong,central-window voltage drift follows aging severity
+endpoint_amplification,100-cycle endpoint p95 |ΔU| = 102.539 mV; endpoint amplification flag = True.,critical boundary,full-window voltage drift is endpoint-amplified
+linkage,"C/25 central/full-window voltage drift was compared against SEI thickness, LLI, lithium loss, and SEI capacity loss.",audit-level,"voltage drift can be linked to degradation-state metrics, but mechanism uniqueness is not yet proven"
+overall,C/25 OCV-like V(Q) branch was run at 0/20/50/100-cycle SEI-only checkpoints with endpoint-control audit.,partially supported,"C/25 V(Q) drift follows aging severity, but the strongest signal is endpoint-amplified"
