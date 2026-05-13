@@ -1,0 +1,7 @@
+metric_layer,evidence,strength,classification
+segment_quality,Each checkpoint produced 16 valid C/10 pulse-rest pairs.,strong,GITT-like pulse-rest segmentation is technically clean
+reconstruction_quality,All reconstruction quality checks passed = True,strong,finite-rest OCV-like points are smooth and monotonic
+voltage_drift,"20-cycle minus 0-cycle finite-rest voltage drift: mean = -1.974 mV, median = -2.054 mV, max abs = 3.026 mV",data-backed,aging-related finite-rest voltage drift is quantifiable
+recovery_amplitude,"Recovery amplitude shift: mean = -0.115 mV, max abs = 0.630 mV",audit-level,rest recovery amplitude provides an auxiliary relaxation descriptor
+boundary,"Rest-end voltage after 60 min is finite-rest OCV-like, not strict thermodynamic OCV.",methodological boundary,strict OCV remains unproven without longer rest or GITT validation branch
+overall,Coarse C/10 pulse-rest protocol produced interpretable finite-rest OCV-like reconstruction points at 0 and 20 cycles.,feasibility supported,GITT-like finite-rest OCV reconstruction is technically feasible

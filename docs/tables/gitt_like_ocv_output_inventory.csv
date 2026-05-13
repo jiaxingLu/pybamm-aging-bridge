@@ -1,0 +1,10 @@
+path,exists,size_kB
+data/gitt_like_ocv_segment_audit.csv,True,19.54
+data/gitt_like_ocv_selected_sequence_audit.csv,True,4.66
+data/gitt_like_ocv_reconstruction_point_table.csv,True,7.38
+data/gitt_like_ocv_quality_audit.csv,True,0.68
+data/gitt_like_ocv_0_vs_20_comparison_table.csv,True,2.84
+data/gitt_like_ocv_classification_table.csv,True,1.05
+figures/gitt_like_ocv_reconstruction_overlay.png,True,165.05
+figures/gitt_like_ocv_deltaU_vs_Q.png,True,162.51
+figures/gitt_like_ocv_recovery_amplitude.png,True,212.3

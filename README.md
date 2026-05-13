@@ -483,3 +483,46 @@ Representative outputs:
 - `docs/tables/slow_rate_ocv_validation_classification_table.csv`
 - `docs/tables/slow_rate_ocv_validation_output_inventory.csv`
 
+
+## GITT-like finite-rest OCV reconstruction audit
+
+Notebook 19 audits whether a coarse GITT-like pulse-rest diagnostic protocol can reconstruct finite-rest OCV-like voltage points from the SEI-only aging branch.
+
+The protocol uses repeated C/10 discharge pulses followed by 60 min rest periods. Each diagnostic branch contains 16 pulse-rest pairs. Each pulse discharges approximately 0.25 Ah, producing a reconstructed finite-rest OCV-like curve over a cumulative discharge window of approximately 4.0 Ah.
+
+The selected pulse-rest sequences pass the segment-level audit at both 0-cycle and 20-cycle checkpoints:
+
+- mean pulse current ≈ 0.5 A,
+- pulse duration = 30 min,
+- rest duration = 60 min,
+- cumulative reconstructed Q-window ≈ 4.0 Ah.
+
+The finite-rest reconstruction quality audit passes. Rest-end voltage points are smooth and monotonic with cumulative discharged capacity. Pulse charge is highly consistent, and rest recovery amplitude remains positive for all pulse-rest pairs.
+
+The 20-cycle curve is slightly lower than the 0-cycle reference over the reconstructed Q-window:
+
+- mean ΔU(20 cycles − 0 cycles) ≈ −1.974 mV,
+- median ΔU ≈ −2.054 mV,
+- maximum absolute voltage drift ≈ 3.026 mV.
+
+Rest-recovery amplitude changes are very weak, with mean Δrecovery ≈ −0.115 mV and maximum absolute recovery shift ≈ 0.630 mV.
+
+Project-level classification:
+
+`GITT-like finite-rest OCV reconstruction = feasibility supported`
+
+The protocol can reconstruct smooth and monotonic finite-rest OCV-like points in the SEI-only aging branch. It provides a weak voltage-drift descriptor, but strict thermodynamic OCV remains unproven.
+
+Representative outputs:
+
+- `docs/figures/gitt_like_ocv_reconstruction_overlay.png`
+- `docs/figures/gitt_like_ocv_deltaU_vs_Q.png`
+- `docs/figures/gitt_like_ocv_recovery_amplitude.png`
+- `docs/tables/gitt_like_ocv_segment_audit.csv`
+- `docs/tables/gitt_like_ocv_selected_sequence_audit.csv`
+- `docs/tables/gitt_like_ocv_reconstruction_point_table.csv`
+- `docs/tables/gitt_like_ocv_quality_audit.csv`
+- `docs/tables/gitt_like_ocv_0_vs_20_comparison_table.csv`
+- `docs/tables/gitt_like_ocv_classification_table.csv`
+- `docs/tables/gitt_like_ocv_output_inventory.csv`
+

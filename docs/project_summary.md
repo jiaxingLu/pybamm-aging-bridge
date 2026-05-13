@@ -505,3 +505,83 @@ Tables:
 - `docs/tables/slow_rate_ocv_validation_classification_table.csv`
 - `docs/tables/slow_rate_ocv_validation_output_inventory.csv`
 
+
+## Notebook 19 — GITT-like finite-rest OCV reconstruction feasibility audit
+
+Notebook 19 audits whether a GITT-like pulse-rest diagnostic protocol can reconstruct finite-rest OCV-like voltage points from the SEI-only aging branch.
+
+### Study design
+
+The diagnostic protocol uses repeated C/10 discharge pulses followed by fixed 60 min rest periods. The audit compares two SEI-only aging checkpoints:
+
+- 0 cycles,
+- 20 cycles.
+
+Each branch contains 16 pulse-rest pairs. Each pulse discharges approximately 0.25 Ah, yielding a reconstructed finite-rest OCV-like curve over approximately 4.0 Ah cumulative discharged capacity.
+
+### Main findings
+
+The selected pulse-rest sequences passed the segment-level audit at both checkpoints. Each checkpoint produced 16 valid C/10 pulse-rest pairs with:
+
+- mean pulse current ≈ 0.5 A,
+- pulse duration = 30 min,
+- rest duration = 60 min,
+- cumulative reconstructed Q-window ≈ 4.0 Ah.
+
+The finite-rest reconstruction quality audit passed. The reconstructed rest-end voltage points were monotonic with cumulative discharged capacity, Q was strictly increasing, pulse charge was highly consistent, and the rest recovery amplitude remained positive for all pulse-rest pairs.
+
+The finite-rest OCV-like reconstruction shows a weak but consistent aging-related voltage shift. Relative to the 0-cycle reference, the 20-cycle curve is slightly lower over the reconstructed Q-window:
+
+- mean ΔU(20 cycles − 0 cycles) ≈ −1.974 mV,
+- median ΔU ≈ −2.054 mV,
+- minimum ΔU ≈ −3.026 mV,
+- maximum ΔU ≈ −0.067 mV.
+
+The recovery-amplitude shift is very small:
+
+- mean Δrecovery(20 cycles − 0 cycles) ≈ −0.115 mV,
+- maximum absolute recovery shift ≈ 0.630 mV.
+
+### Interpretation boundary
+
+Notebook 19 establishes technical feasibility of GITT-like finite-rest OCV reconstruction. It does not establish strict thermodynamic OCV.
+
+The extracted rest-end voltage after 60 min rest should be described as a finite-rest OCV-like descriptor. Although the pulse-rest protocol reduces polarization effects compared with continuous low-rate discharge, complete relaxation is not proven.
+
+The diagnostic protocol is intentionally coarse:
+
+- C/10 pulse current,
+- 30 min pulse duration,
+- 60 min rest,
+- 0.25 Ah capacity step per pulse,
+- 16 reconstructed points,
+- cumulative Q-window ≈ 4.0 Ah.
+
+Therefore, the output is suitable for feasibility-level quasi-equilibrium reconstruction, but not for final high-resolution OCV-SOC or ICA/DVA mechanism attribution.
+
+### Classification
+
+`GITT-like finite-rest OCV reconstruction = feasibility supported`
+
+Project-level wording:
+
+> A coarse C/10 pulse-rest protocol can reconstruct smooth and monotonic finite-rest OCV-like points in the SEI-only aging branch. The method is technically feasible and provides a weak voltage-drift descriptor, but strict thermodynamic OCV remains unproven.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/gitt_like_ocv_reconstruction_overlay.png`
+- `docs/figures/gitt_like_ocv_deltaU_vs_Q.png`
+- `docs/figures/gitt_like_ocv_recovery_amplitude.png`
+
+Tables:
+
+- `docs/tables/gitt_like_ocv_segment_audit.csv`
+- `docs/tables/gitt_like_ocv_selected_sequence_audit.csv`
+- `docs/tables/gitt_like_ocv_reconstruction_point_table.csv`
+- `docs/tables/gitt_like_ocv_quality_audit.csv`
+- `docs/tables/gitt_like_ocv_0_vs_20_comparison_table.csv`
+- `docs/tables/gitt_like_ocv_classification_table.csv`
+- `docs/tables/gitt_like_ocv_output_inventory.csv`
+
