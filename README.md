@@ -19,6 +19,56 @@ The core objective is to establish a traceable bridge:
     -> ECM-level observable fingerprint
     -> aging diagnostic interpretation
 
+<!-- RELEASE_SNAPSHOT_V0_1_START -->
+
+## Current release snapshot v0.1
+
+This repository currently provides an audit-first research workflow for mapping lithium-ion battery aging mechanisms to diagnostic observables and fitting-target hierarchies.
+
+The latest synthesis consolidates the completed mechanism branches into a cross-mechanism evidence map:
+
+- SEI-only aging
+- Contact / ohmic resistance growth
+- Negative-electrode loss of active material
+- Positive-electrode loss of active material
+- Lithium plating
+
+Latest synthesis document:
+
+- [`docs/cross_mechanism_fingerprint_synthesis_v0_1.md`](docs/cross_mechanism_fingerprint_synthesis_v0_1.md)
+
+Supporting documentation outputs:
+
+- [`docs/cross_mechanism_status_v0_1.md`](docs/cross_mechanism_status_v0_1.md)
+- [`docs/tables/cross_mechanism_fingerprint_matrix_v0_1.csv`](docs/tables/cross_mechanism_fingerprint_matrix_v0_1.csv)
+- [`docs/tables/cross_mechanism_target_hierarchy_v0_1.csv`](docs/tables/cross_mechanism_target_hierarchy_v0_1.csv)
+- [`docs/tables/cross_mechanism_rejection_flags_v0_1.csv`](docs/tables/cross_mechanism_rejection_flags_v0_1.csv)
+- [`docs/figures/cross_mechanism_fingerprint_heatmap.png`](docs/figures/cross_mechanism_fingerprint_heatmap.png)
+- [`docs/figures/cross_mechanism_classification_counts.png`](docs/figures/cross_mechanism_classification_counts.png)
+- [`docs/figures/cross_mechanism_target_hierarchy_overview.png`](docs/figures/cross_mechanism_target_hierarchy_overview.png)
+
+Current mechanism-level hierarchy:
+
+| Mechanism family | Current classification | Primary target layer |
+|---|---|---|
+| SEI-only aging | Capacity-dominant, voltage-secondary, derivative-auxiliary | Capacity RPT |
+| Contact / ohmic resistance growth | Ri(t)-dominant | Multi-window Ri(t) |
+| Negative-electrode loss of active material | Capacity-dominant and boundary-sensitive | Capacity RPT |
+| Positive-electrode loss of active material | Voltage-shape and DVA-dominant | C/25 central-window V(Q), DVA central features |
+| Lithium plating | Direct mechanism-state observability supported; external diagnostic fingerprint deferred | Direct plating-state variables |
+
+Important interpretation boundary:
+
+Lithium plating direct variables are treated as mechanism-state observables in model-based audits. They are not equivalent to closed measurement-accessible fitting targets. External lithium-plating diagnostic layers remain deferred until future process-isolated diagnostic audits are completed.
+
+Artifact convention:
+
+- `docs/tables/` contains documentation-ready tables intended for repository display.
+- `docs/figures/` contains documentation-ready figures intended for repository display.
+- Root-level `data/` and `figures/` are local traceability outputs and may be ignored by version control unless explicitly promoted.
+
+<!-- RELEASE_SNAPSHOT_V0_1_END -->
+
 ---
 
 ## Motivation
