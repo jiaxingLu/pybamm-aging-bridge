@@ -1,0 +1,26 @@
+mechanism,hierarchy_level,n_items,raw_entry
+SEI-only aging,Primary,1,Capacity RPT
+SEI-only aging,Secondary,2,C/25 central-window V(Q); GITT-like finite-rest voltage
+SEI-only aging,Auxiliary,3,DVA central features; Ri(t); corrected relaxation descriptors
+SEI-only aging,Rejected,2,ICA central features; endpoint-only voltage drift
+SEI-only aging,Deferred,0,None in current SEI-only branch
+Contact / ohmic resistance growth,Primary,1,Multi-window Ri(t)
+Contact / ohmic resistance growth,Secondary,0,None currently recommended
+Contact / ohmic resistance growth,Auxiliary,1,Capacity RPT
+Contact / ohmic resistance growth,Rejected,2,raw recovery amplitude; corrected relaxation descriptors as primary evidence
+Contact / ohmic resistance growth,Deferred,3,C/25 central-window V(Q); ICA central features; DVA central features
+NE-LAM,Primary,1,Capacity RPT
+NE-LAM,Secondary,2,C/25 central-window V(Q); DVA central features
+NE-LAM,Auxiliary,1,endpoint / boundary indicators
+NE-LAM,Rejected,2,ICA central features; endpoint-only signal
+NE-LAM,Deferred,0,None in current NE-LAM branch
+PE-LAM,Primary,2,C/25 central-window V(Q); DVA central features
+PE-LAM,Secondary,1,Capacity RPT
+PE-LAM,Auxiliary,1,endpoint / boundary indicators
+PE-LAM,Rejected,1,ICA central features
+PE-LAM,Deferred,0,None in current PE-LAM branch
+Lithium plating,Primary,1,direct plating-state variables
+Lithium plating,Secondary,0,None closed as external diagnostic targets
+Lithium plating,Auxiliary,3,Capacity RPT; Ri(t); corrected relaxation descriptors
+Lithium plating,Rejected,0,None as universal rejection; current external signals are weak rather than disproven
+Lithium plating,Deferred,4,C/25 central-window V(Q); GITT-like finite-rest voltage; ICA central features; DVA central features
