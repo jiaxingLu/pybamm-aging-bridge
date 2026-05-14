@@ -1,0 +1,7 @@
+pair,condition,plating_mode,temperature_C,stress_charge_rate,initial_soc,role
+25C_1C,no_plating_25C_1C,none,25.0,1C,0.05,matched no-plating control
+25C_1C,plating_25C_1C,partially reversible,25.0,1C,0.05,plating-enabled condition
+10C_1C,no_plating_10C_1C,none,10.0,1C,0.05,matched no-plating control
+10C_1C,plating_10C_1C,partially reversible,10.0,1C,0.05,plating-enabled condition
+10C_2C,no_plating_10C_2C,none,10.0,2C,0.05,matched no-plating control
+10C_2C,plating_10C_2C,partially reversible,10.0,2C,0.05,plating-enabled condition

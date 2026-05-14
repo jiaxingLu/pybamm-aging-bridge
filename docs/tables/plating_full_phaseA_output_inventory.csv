@@ -1,0 +1,10 @@
+path,exists,size_kB
+data/plating_full_branch_contract.csv,True,0.52
+data/plating_full_post_stress_observability_table.csv,True,8.12
+data/plating_full_capacity_segment_audit.csv,True,4.29
+data/plating_full_capacity_table.csv,True,1.13
+data/plating_full_matched_capacity_audit.csv,True,0.77
+data/plating_full_phaseA_classification_table.csv,True,1.0
+figures/plating_full_phaseA_direct_plating_capacity.png,True,100.56
+figures/plating_full_phaseA_matched_capacity_effect.png,True,95.72
+figures/plating_full_phaseA_direct_vs_capacity_effect.png,True,104.74

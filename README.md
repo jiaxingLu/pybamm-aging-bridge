@@ -831,3 +831,54 @@ Representative outputs:
 - `docs/tables/plating_entry_matched_plating_effect_audit.csv`
 - `docs/tables/plating_entry_revised_classification_table.csv`
 
+
+## Plating full-fingerprint Phase A audit
+
+Notebook 26 closes Phase A of the lithium plating（析锂）full-fingerprint audit.
+
+The notebook was intentionally scoped to Phase A after HPPC Phase B repeatedly killed the Jupyter kernel under:
+
+- DFN model,
+- SEI-background partially reversible plating,
+- `starting_solution`,
+- dense HPPC sampling.
+
+Therefore, Notebook 26 should not be interpreted as a completed full plating fingerprint.
+
+Phase A completed:
+
+- post-stress state generation,
+- direct plating-state observability,
+- Capacity RPT = Reference Performance Test（容量基准性能测试） from post-stress states,
+- matched capacity-effect audit,
+- Phase A visualization,
+- execution-resource boundary classification.
+
+Key Phase A results:
+
+- matched no-plating controls remained clean;
+- plating-enabled branches showed direct plating signals;
+- max direct plating capacity variable ≈ `0.095446 Ah`;
+- max plating current density ≈ `0.138783 A/m²`;
+- max matched discharge-capacity effect ≈ `0.010112 Ah`.
+
+Classification:
+
+`plating full-fingerprint Phase A = supported`
+
+`full plating fingerprint = deferred`
+
+HPPC Ri(t)（时间窗内阻） and corrected relaxation descriptors（修正后恢复描述符） under plating must be moved to a process-isolated workflow rather than executed inside Jupyter.
+
+Representative outputs:
+
+- `docs/figures/plating_full_phaseA_direct_plating_capacity.png`
+- `docs/figures/plating_full_phaseA_matched_capacity_effect.png`
+- `docs/figures/plating_full_phaseA_direct_vs_capacity_effect.png`
+- `docs/tables/plating_full_branch_contract.csv`
+- `docs/tables/plating_full_post_stress_observability_table.csv`
+- `docs/tables/plating_full_capacity_table.csv`
+- `docs/tables/plating_full_matched_capacity_audit.csv`
+- `docs/tables/plating_full_phaseA_classification_table.csv`
+- `docs/tables/plating_full_phaseA_output_inventory.csv`
+

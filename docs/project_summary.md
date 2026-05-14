@@ -1560,3 +1560,139 @@ It should extend the supported plating-entry protocols to:
 
 Only after that should plating be included in a cross-mechanism synthesis table.
 
+
+## Notebook 26 — Plating full-fingerprint Phase A audit
+
+Notebook 26 was intended to extend plating entry observability into a full lithium plating（析锂）fingerprint audit.
+
+Phase A was completed successfully. Phase B was explicitly deferred after repeated Jupyter kernel death during HPPC execution.
+
+### Phase A scope
+
+Notebook 26 Phase A included:
+
+1. post-stress state generation（应力后状态生成）,
+2. direct plating-state observability（直接析锂状态可观测性）,
+3. Capacity RPT = Reference Performance Test（容量基准性能测试） from post-stress states,
+4. matched capacity-effect audit（匹配容量效应审计）,
+5. Phase A figures,
+6. Phase A classification table.
+
+### Model and protocol
+
+The model used the supported SEI-background plating setup established in Notebook 25:
+
+- OKane2022 DFN,
+- SEI = solvent-diffusion limited,
+- lithium plating = partially reversible,
+- lithium plating porosity change = false,
+- LAM disabled,
+- particle mechanics disabled,
+- isothermal model.
+
+Matched conditions:
+
+- no_plating_25C_1C vs plating_25C_1C,
+- no_plating_10C_1C vs plating_10C_1C,
+- no_plating_10C_2C vs plating_10C_2C.
+
+### Main Phase A results
+
+Matched no-plating controls remained clean, while plating-enabled branches showed direct plating signals.
+
+The maximum direct plating capacity variable was approximately:
+
+`0.095446 Ah`
+
+The maximum plating current density was approximately:
+
+`0.138783 A/m²`
+
+The maximum matched discharge-capacity effect was approximately:
+
+`0.010112 Ah`
+
+This confirms the same interpretation boundary established in Notebook 25:
+
+`direct plating variable peak ≠ final irreversible capacity loss`
+
+Because the model uses partially reversible plating（部分可逆析锂）, part of the plated lithium can be stripped or recovered during later protocol stages.
+
+### Phase B resource boundary
+
+Notebook 26 attempted to extend the audit to HPPC Ri(t)（时间窗内阻） and corrected relaxation descriptors（修正后恢复描述符）.
+
+Repeated in-notebook execution of:
+
+- DFN,
+- SEI-background plating,
+- `starting_solution`,
+- dense HPPC sampling,
+
+caused Jupyter kernel death.
+
+This is classified as an execution-resource boundary, not as a scientific negative result.
+
+The affected layer is therefore deferred:
+
+`HPPC Ri(t) / corrected relaxation under plating = process-isolated audit required`
+
+### Correct conclusion wording
+
+Supported:
+
+- post-stress SEI-background plating states are runnable;
+- direct negative-electrode plating variables are observable;
+- matched no-plating controls remain clean;
+- plating-enabled branches show stress-sensitive direct plating signals;
+- matched post-stress capacity effects are measurable but smaller than direct plating-variable peaks.
+
+Not supported:
+
+- Notebook 26 does not complete the full plating fingerprint;
+- HPPC Ri(t) and corrected relaxation descriptors under plating were not successfully audited inside Jupyter;
+- direct plating variables must not be equated with final irreversible capacity loss;
+- the full Mechanism Fingerprint Registry v0.2 row for plating remains incomplete.
+
+### Project-level classification
+
+`plating full-fingerprint Phase A = supported`
+
+`full plating fingerprint = deferred`
+
+Project-level wording:
+
+> Phase A confirms that post-stress SEI-background plating states are directly observable and matched-capacity effects are measurable. However, the HPPC Ri(t) and corrected relaxation layer triggered a Jupyter/PyBaMM resource boundary and must be moved to a process-isolated workflow before plating can be included in the final cross-mechanism fingerprint synthesis.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/plating_full_phaseA_direct_plating_capacity.png`
+- `docs/figures/plating_full_phaseA_matched_capacity_effect.png`
+- `docs/figures/plating_full_phaseA_direct_vs_capacity_effect.png`
+
+Tables:
+
+- `docs/tables/plating_full_branch_contract.csv`
+- `docs/tables/plating_full_post_stress_observability_table.csv`
+- `docs/tables/plating_full_capacity_table.csv`
+- `docs/tables/plating_full_matched_capacity_audit.csv`
+- `docs/tables/plating_full_phaseA_classification_table.csv`
+- `docs/tables/plating_full_phaseA_output_inventory.csv`
+
+### Next step
+
+The next task should be process-isolated, not Jupyter-inline:
+
+`26B_plating_hppc_process_isolated_audit`
+
+Implementation principle:
+
+- run one plating condition per external Python process;
+- write one descriptor CSV per condition;
+- merge descriptors only after all processes complete;
+- avoid storing large PyBaMM Solution objects in Jupyter memory.
+
+Only after this succeeds should the project continue to C/25 V(Q), GITT-like finite-rest voltage, and ICA/DVA under plating.
+

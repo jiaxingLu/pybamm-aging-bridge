@@ -1,0 +1,6 @@
+metric_layer,evidence,strength,classification
+post_stress_direct_plating,Matched no-plating controls clean = True; plating-enabled branches detected = True.,strong,direct plating observability is supported under matched controls
+stress_sensitivity,Max direct plating capacity variable = 0.095446 Ah; max plating current density = 0.138783 A/m².,data-backed,plating signal increases under low-temperature / high-rate stress
+matched_capacity_effect,Max matched discharge-capacity effect = 0.010112 Ah.,audit-level,post-stress capacity effect is measurable but much smaller than direct plating variable
+phaseB_resource_boundary,In-notebook HPPC Phase B repeatedly caused kernel death under DFN + starting_solution + dense HPPC sampling.,execution boundary,HPPC Ri(t) / relaxation audit deferred to process-isolated workflow
+overall,"Phase A completed: post-stress state, direct plating variables, matched capacity audit, and figures.",supported,plating full-fingerprint Phase A supported; full fingerprint remains deferred
