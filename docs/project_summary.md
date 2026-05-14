@@ -1696,3 +1696,121 @@ Implementation principle:
 
 Only after this succeeds should the project continue to C/25 V(Q), GITT-like finite-rest voltage, and ICA/DVA under plating.
 
+
+## Notebook 26B — Plating HPPC process-isolated audit
+
+Notebook 26B completed the HPPC Ri(t)（时间窗内阻）and corrected relaxation（修正后恢复描述符）layer that was deferred from Notebook 26.
+
+### Reason for process isolation
+
+Notebook 26 showed that in-notebook execution of:
+
+- DFN,
+- SEI-background partially reversible plating,
+- `starting_solution`,
+- dense HPPC sampling,
+
+repeatedly killed the Jupyter kernel.
+
+Notebook 26B therefore moved PyBaMM execution outside Jupyter. Each condition was run in a separate external Python process using:
+
+`scripts/run_plating_hppc_condition.py`
+
+Each process wrote descriptor CSV files and exited, releasing memory.
+
+### Inputs
+
+Process-isolated outputs:
+
+- `data/plating_hppc_process_isolated/*_hppc_descriptor.csv`
+- `data/plating_hppc_process_isolated/*_segment_audit.csv`
+
+Merged outputs:
+
+- `data/plating_26B_hppc_descriptor_table.csv`
+- `data/plating_26B_segment_audit_table.csv`
+- `data/plating_26B_matched_hppc_audit.csv`
+- `data/plating_26B_classification_table.csv`
+
+### HPPC Ri(t) result
+
+Ri(t) = time-windowed internal resistance（时间窗内阻）.
+
+Absolute Ri(t) values were strongly temperature-sensitive:
+
+- 25°C conditions showed lower Ri(t),
+- 10°C conditions showed substantially higher Ri(t).
+
+However, matched plating-minus-control Ri(t) shifts were very small.
+
+Maximum absolute matched Ri(t) delta:
+
+`≈ 0.120 mΩ`
+
+Classification:
+
+`weak / near-zero`
+
+Therefore, under the tested SEI-background partially reversible plating stress, HPPC Ri(t) is not a strong plating fingerprint.
+
+### Corrected relaxation result
+
+Corrected post-ohmic relaxation descriptors were also weakly affected.
+
+Observed scale:
+
+- maximum corrected recovery-amplitude delta < `0.3 mV`,
+- maximum corrected t95 delta ≈ `3.3 s`.
+
+Classification:
+
+`corrected relaxation changes are small under tested plating stress`
+
+Therefore, corrected relaxation descriptors are not recommended as primary fitting targets for the tested plating branch.
+
+### Interpretation
+
+Notebook 25 and Notebook 26 Phase A established that direct plating variables are observable and stress-sensitive.
+
+Notebook 26B adds that:
+
+- direct plating variables can be nonzero,
+- matched post-stress capacity effects can be measurable,
+- but HPPC Ri(t) and corrected relaxation can still remain weak / near-zero.
+
+Key interpretation:
+
+`direct plating observability ≠ strong HPPC fingerprint`
+
+### Project-level classification
+
+`plating HPPC layer = process-isolated audit completed; Ri(t) / corrected relaxation weak`
+
+Project-level wording:
+
+> Process-isolated HPPC execution completed the deferred plating Ri(t) and relaxation layer. Under the tested SEI-background partially reversible plating stress, direct plating variables are observable, but matched HPPC Ri(t) and corrected relaxation responses remain weak. Therefore, HPPC descriptors should be treated as auxiliary audit descriptors rather than primary fitting targets for this plating branch.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/plating_26B_hppc_Ri_absolute.png`
+- `docs/figures/plating_26B_hppc_matched_Ri_shift.png`
+- `docs/figures/plating_26B_hppc_corrected_relaxation_shift.png`
+
+Tables:
+
+- `docs/tables/plating_26B_hppc_descriptor_table.csv`
+- `docs/tables/plating_26B_segment_audit_table.csv`
+- `docs/tables/plating_26B_matched_hppc_audit.csv`
+- `docs/tables/plating_26B_classification_table.csv`
+- `docs/tables/plating_26B_output_inventory.csv`
+
+### Next step
+
+The next plating diagnostic layer should be:
+
+`C/25 OCV-like V(Q) and ICA/DVA under plating`
+
+This should also use a cautious workflow. If PyBaMM memory pressure appears again, process isolation should be used immediately.
+

@@ -11,3 +11,7 @@ figures/*.png
 figures/*.pdf
 sims/*
 !sims/.gitkeep
+
+# Process-isolated plating HPPC intermediate outputs
+data/plating_hppc_process_isolated/
+data/plating_26B_*.csv

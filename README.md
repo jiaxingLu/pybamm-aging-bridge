@@ -882,3 +882,43 @@ Representative outputs:
 - `docs/tables/plating_full_phaseA_classification_table.csv`
 - `docs/tables/plating_full_phaseA_output_inventory.csv`
 
+
+## Plating HPPC process-isolated audit
+
+Notebook 26B completes the HPPC Ri(t)（时间窗内阻）and corrected relaxation（修正后恢复描述符）layer that was deferred from Notebook 26.
+
+Notebook 26 showed that in-notebook PyBaMM execution with DFN + SEI-background plating + `starting_solution` + dense HPPC sampling repeatedly killed the Jupyter kernel. Notebook 26B therefore moved HPPC execution into isolated external Python processes.
+
+External runner:
+
+- `scripts/run_plating_hppc_condition.py`
+
+Each condition was executed in a separate process and wrote descriptor CSV outputs. This solved the Jupyter kernel-death boundary.
+
+Key results:
+
+- all 6 matched HPPC conditions produced descriptor and segment-audit CSV files;
+- absolute Ri(t) is strongly temperature-sensitive;
+- matched plating-minus-control Ri(t) shifts are weak / near-zero;
+- maximum absolute matched Ri(t) delta ≈ `0.120 mΩ`;
+- corrected relaxation changes are also weak;
+- maximum corrected recovery-amplitude delta < `0.3 mV`;
+- maximum corrected t95 delta ≈ `3.3 s`.
+
+Classification:
+
+`plating HPPC layer = process-isolated audit completed; Ri(t) / corrected relaxation weak`
+
+Interpretation:
+
+Direct plating variables are observable under the SEI-background partially reversible plating branch, but HPPC Ri(t) and corrected relaxation are not primary fitting-target layers for this plating branch under the tested stress range.
+
+Representative outputs:
+
+- `docs/figures/plating_26B_hppc_Ri_absolute.png`
+- `docs/figures/plating_26B_hppc_matched_Ri_shift.png`
+- `docs/figures/plating_26B_hppc_corrected_relaxation_shift.png`
+- `docs/tables/plating_26B_hppc_descriptor_table.csv`
+- `docs/tables/plating_26B_matched_hppc_audit.csv`
+- `docs/tables/plating_26B_classification_table.csv`
+

@@ -1,0 +1,5 @@
+metric_layer,evidence,strength,classification
+process_isolation,All six HPPC conditions produced descriptor and segment-audit CSV files from external Python processes.,strong,process-isolated HPPC workflow solved the Jupyter kernel-death boundary
+Ri_t,Maximum absolute matched Ri(t) delta = 0.120183 mΩ.,weak / near-zero,Ri(t) shift is small under tested plating stress
+corrected_relaxation,Max corrected recovery-amplitude delta = 0.268879 mV; max corrected t95 delta = 3.300000 s.,weak / near-zero,corrected relaxation changes are small under tested plating stress
+overall,HPPC Ri(t) and corrected relaxation layer was completed under process isolation.,supported,plating HPPC process-isolated audit completed

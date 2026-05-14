@@ -1,0 +1,8 @@
+path,exists,size_kB
+data/plating_26B_hppc_descriptor_table.csv,True,5.69
+data/plating_26B_segment_audit_table.csv,True,4.07
+data/plating_26B_matched_hppc_audit.csv,True,3.38
+data/plating_26B_classification_table.csv,True,0.7
+figures/plating_26B_hppc_Ri_absolute.png,True,168.38
+figures/plating_26B_hppc_matched_Ri_shift.png,True,170.29
+figures/plating_26B_hppc_corrected_relaxation_shift.png,True,157.02
