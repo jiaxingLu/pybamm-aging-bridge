@@ -1359,3 +1359,204 @@ The purpose is to test whether lithium plating produces a distinct fingerprint i
 
 The same Mechanism Fingerprint Registry v0.2 should be reused to enable cross-mechanism synthesis in a later notebook.
 
+
+## Notebook 25 — Plating entry observability audit
+
+Notebook 25 audited lithium plating（析锂）entry observability in the PyBaMM aging-bridge workflow.
+
+### Model boundary and correction
+
+The first model attempt used:
+
+- SEI = none
+- lithium plating = partially reversible
+
+This failed because OKane2022 partially reversible plating（部分可逆析锂）uses a dead-lithium decay relation that depends on SEI thickness（SEI 厚度）. With SEI disabled, the model produced a division-by-zero error.
+
+The corrected model uses an SEI background:
+
+- SEI = solvent-diffusion limited
+- lithium plating = partially reversible
+- lithium plating porosity change = false
+- LAM disabled
+- particle mechanics disabled
+- isothermal model
+
+Therefore, Notebook 25 is classified as:
+
+`SEI-background plating entry audit（SEI 背景下的析锂入口审计）`
+
+not as a pure plating-without-SEI branch.
+
+### Protocol design
+
+The protocol starts from low SOC:
+
+- initial SOC = 0.05
+- charge to 4.2 V at the specified stress charge rate
+- hold at 4.2 V until C/20
+- rest for 60 min
+- discharge at C/3 to 2.5 V
+- rest for 60 min
+
+Initial stress conditions:
+
+- no_plating_25C_1C
+- plating_25C_1C
+- plating_10C_1C
+- plating_10C_2C
+
+Matched no-plating controls were added:
+
+- no_plating_10C_1C
+- no_plating_10C_2C
+
+### Direct plating observability
+
+Direct negative-electrode plating variables were available and extractable, including:
+
+- loss of capacity to negative lithium plating
+- loss of lithium to negative lithium plating
+- negative lithium plating concentration
+- negative dead lithium concentration
+- negative lithium plating thickness
+- negative dead lithium thickness
+- negative electrode lithium plating interfacial current density
+- negative electrode lithium plating reaction overpotential
+
+Matched no-plating controls were clean:
+
+- no_plating_25C_1C: direct plating signal = False
+- no_plating_10C_1C: direct plating signal = False
+- no_plating_10C_2C: direct plating signal = False
+
+All plating-enabled cases showed direct plating signals:
+
+- plating_25C_1C: direct plating signal = True
+- plating_10C_1C: direct plating signal = True
+- plating_10C_2C: direct plating signal = True
+
+Direct plating indicators increased under stronger stress.
+
+Loss of capacity to plating, peak / absolute maximum:
+
+- plating_25C_1C: ≈ `0.0445 Ah`
+- plating_10C_1C: ≈ `0.0728 Ah`
+- plating_10C_2C: ≈ `0.0954 Ah`
+
+Maximum plating current density:
+
+- plating_25C_1C: ≈ `0.031 A/m²`
+- plating_10C_1C: ≈ `0.058 A/m²`
+- plating_10C_2C: ≈ `0.139 A/m²`
+
+### Matched-control capacity audit
+
+Matched no-plating controls were required because temperature and stress charge rate also affect final discharge capacity.
+
+Matched pairs:
+
+- plating_25C_1C vs no_plating_25C_1C
+- plating_10C_1C vs no_plating_10C_1C
+- plating_10C_2C vs no_plating_10C_2C
+
+Matched post-stress discharge-capacity differences:
+
+- 25C_1C: `−0.002763 Ah`, approximately `−0.0555%`
+- 10C_1C: `−0.007530 Ah`, approximately `−0.1543%`
+- 10C_2C: `−0.010112 Ah`, approximately `−0.2073%`
+
+These differences are much smaller than the peak direct loss-of-capacity-to-plating variables. This is physically plausible because the model uses partially reversible plating; some plated lithium can be stripped or recovered during rest/discharge.
+
+Therefore:
+
+`direct plating abs_max ≠ final irreversible capacity loss`
+
+### Charge-segment audit
+
+A charge-segment audit was added to avoid confusing stress-charge rate with final discharge rate.
+
+The charge segment confirmed:
+
+- 1C stress-charge cases reached approximately `−5 A`
+- 2C stress-charge cases reached approximately `−10 A`
+- final discharge capacity checks were performed at common C/3, approximately `+1.6667 A`
+
+Therefore:
+
+- `stress_charge_rate` refers to the preceding charge stress
+- final capacity tables report C/3 discharge capacity after that stress protocol
+
+### Interpretation boundary
+
+Supported:
+
+- SEI-background OKane2022 partially reversible plating runs successfully.
+- Direct negative-electrode plating variables are available and extractable.
+- Matched no-plating controls are clean.
+- Plating-enabled matched cases show direct plating signals.
+- Plating indicators increase under lower temperature and higher charge rate.
+- Post-stress discharge-capacity differences are measurable under matched controls.
+
+Not supported:
+
+- Notebook 25 does not establish a full plating fingerprint.
+- Direct loss-of-capacity-to-plating peaks should not be interpreted as final irreversible capacity loss.
+- Voltage trajectory alone is not sufficient to identify plating.
+- Capacity loss relative to a non-matched 25°C control is not a clean plating-specific metric.
+- HPPC Ri(t), corrected relaxation, C/25 V(Q), GITT-like finite-rest voltage, and ICA/DVA under plating were not audited here.
+
+### Project-level classification
+
+`plating entry observability = supported`
+
+`full plating fingerprint = deferred`
+
+Project-level wording:
+
+> SEI-background partially reversible lithium plating is runnable and directly observable in OKane2022. Matched no-plating controls are clean, and plating-enabled conditions show stress-sensitive direct plating variables. However, post-protocol capacity changes are much smaller than peak plating variables and must be interpreted with matched controls. A full plating fingerprint requires a separate follow-up audit.
+
+### Representative files
+
+Figures:
+
+- `docs/figures/plating_entry_capacity_loss_to_plating.png`
+- `docs/figures/plating_entry_current_density.png`
+- `docs/figures/plating_entry_discharge_capacity.png`
+- `docs/figures/plating_entry_matched_capacity_difference.png`
+- `docs/figures/plating_entry_direct_vs_matched_capacity_effect.png`
+- `docs/figures/plating_entry_charge_segment_current_audit.png`
+
+Tables:
+
+- `docs/tables/plating_entry_branch_contract.csv`
+- `docs/tables/plating_entry_variable_inventory.csv`
+- `docs/tables/plating_entry_protocol_table.csv`
+- `docs/tables/plating_entry_observability_compact.csv`
+- `docs/tables/plating_entry_variable_source_audit.csv`
+- `docs/tables/plating_entry_capacity_table.csv`
+- `docs/tables/plating_entry_charge_segment_audit.csv`
+- `docs/tables/plating_entry_matched_control_contract.csv`
+- `docs/tables/plating_entry_matched_control_observability_table.csv`
+- `docs/tables/plating_entry_matched_control_capacity_table.csv`
+- `docs/tables/plating_entry_matched_plating_effect_audit.csv`
+- `docs/tables/plating_entry_revised_classification_table.csv`
+- `docs/tables/plating_entry_output_inventory_revised.csv`
+
+### Next step
+
+Recommended next notebook:
+
+`26_plating_full_fingerprint_audit.ipynb`
+
+It should extend the supported plating-entry protocols to:
+
+1. HPPC Ri(t)（时间窗内阻）
+2. corrected relaxation descriptors（修正后恢复描述符）
+3. C/25 OCV-like V(Q)（C/25 近似 OCV 电压曲线）
+4. GITT-like finite-rest voltage（GITT-like 有限静置电压）
+5. ICA/DVA central features（中央窗口微分电压特征）
+6. Mechanism Fingerprint Registry v0.2 output
+
+Only after that should plating be included in a cross-mechanism synthesis table.
+

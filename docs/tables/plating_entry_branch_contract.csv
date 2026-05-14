@@ -1,0 +1,5 @@
+condition,plating_mode,temperature_C,charge_rate,initial_soc,role
+no_plating_25C_1C,none,25.0,1C,0.05,no-plating control
+plating_25C_1C,partially reversible,25.0,1C,0.05,temperature-normal plating-enabled control
+plating_10C_1C,partially reversible,10.0,1C,0.05,low-temperature plating stress
+plating_10C_2C,partially reversible,10.0,2C,0.05,low-temperature fast-charge plating stress

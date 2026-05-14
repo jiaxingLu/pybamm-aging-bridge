@@ -762,3 +762,72 @@ Representative outputs:
 - `docs/tables/lam_fingerprint_summary_v0_2.csv`
 - `docs/tables/lam_fingerprint_classification_table.csv`
 
+
+## Plating entry observability audit
+
+Notebook 25 audits lithium plating（析锂）entry observability in the PyBaMM aging-bridge workflow.
+
+The first model attempt showed an important option boundary: OKane2022 partially reversible plating（部分可逆析锂）depends on SEI thickness through dead-lithium decay, so `SEI = none` caused a division-by-zero failure. The corrected setup uses an SEI background:
+
+- SEI = solvent-diffusion limited
+- lithium plating = partially reversible
+- lithium plating porosity change = false
+- LAM and particle mechanics disabled
+- isothermal model
+
+The protocol starts at low SOC and applies a stress-charge branch:
+
+- initial SOC = 0.05
+- charge to 4.2 V at stress charge rate
+- hold at 4.2 V until C/20
+- rest for 60 min
+- C/3 discharge to 2.5 V
+- rest for 60 min
+
+Audited conditions:
+
+- no_plating_25C_1C
+- plating_25C_1C
+- plating_10C_1C
+- plating_10C_2C
+- matched controls: no_plating_10C_1C and no_plating_10C_2C
+
+Direct negative-electrode plating variables were available and extractable. Matched no-plating controls were clean, while all plating-enabled cases showed direct plating signals.
+
+Direct plating indicators increased with stress:
+
+- loss of capacity to plating: ≈ 0.0445 Ah at 25°C/1C, ≈ 0.0728 Ah at 10°C/1C, ≈ 0.0954 Ah at 10°C/2C
+- maximum plating current density: ≈ 0.031, 0.058, and 0.139 A/m² respectively
+
+Matched post-stress discharge-capacity differences were much smaller:
+
+- 25C_1C: −0.002763 Ah, approximately −0.0555%
+- 10C_1C: −0.007530 Ah, approximately −0.1543%
+- 10C_2C: −0.010112 Ah, approximately −0.2073%
+
+This confirms that direct plating-variable peaks must not be interpreted as final irreversible capacity loss under partially reversible plating.
+
+A charge-segment audit clarified protocol interpretation:
+
+- 1C stress-charge segments reached approximately −5 A
+- 2C stress-charge segments reached approximately −10 A
+- final discharge-capacity checks were performed at common C/3, approximately +1.6667 A
+
+Project-level classification:
+
+`plating entry observability = supported`
+
+`full plating fingerprint = deferred`
+
+Representative outputs:
+
+- `docs/figures/plating_entry_capacity_loss_to_plating.png`
+- `docs/figures/plating_entry_current_density.png`
+- `docs/figures/plating_entry_discharge_capacity.png`
+- `docs/figures/plating_entry_matched_capacity_difference.png`
+- `docs/figures/plating_entry_direct_vs_matched_capacity_effect.png`
+- `docs/figures/plating_entry_charge_segment_current_audit.png`
+- `docs/tables/plating_entry_observability_compact.csv`
+- `docs/tables/plating_entry_matched_plating_effect_audit.csv`
+- `docs/tables/plating_entry_revised_classification_table.csv`
+

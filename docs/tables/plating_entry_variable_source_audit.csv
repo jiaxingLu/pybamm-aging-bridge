@@ -1,0 +1,9 @@
+metric,n_sources_found,sources
+loss_of_capacity_to_plating_Ah,1,Loss of capacity to negative lithium plating [A.h]
+loss_of_lithium_to_plating_mol,1,Loss of lithium to negative lithium plating [mol]
+plated_lithium_concentration,1,X-averaged negative lithium plating concentration [mol.m-3]
+dead_lithium_concentration,1,X-averaged negative dead lithium concentration [mol.m-3]
+plated_lithium_thickness_m,1,X-averaged negative lithium plating thickness [m]
+dead_lithium_thickness_m,1,X-averaged negative dead lithium thickness [m]
+plating_current_density_A_m2,1,X-averaged negative electrode lithium plating interfacial current density [A.m-2]
+plating_overpotential_V,1,X-averaged negative electrode lithium plating reaction overpotential [V]

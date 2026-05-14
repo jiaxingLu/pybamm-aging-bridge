@@ -1,0 +1,6 @@
+metric_layer,evidence,strength,classification
+matched_controls,All matched no-plating controls clean = True.,strong,matched no-plating controls are clean
+direct_plating_variables,All plating-enabled matched cases show direct plating signal = True.,strong,direct plating variables are observable under matched stress conditions
+plating_stress_sensitivity,Max direct loss of capacity to plating = 0.095446 Ah.,data-backed,plating signal increases under low-temperature and high-rate stress
+capacity_after_protocol,Max matched discharge-capacity difference = 0.010112 Ah.,audit-level,post-protocol capacity effect must be interpreted with matched controls
+overall,SEI-background plating entry audit completed with matched no-plating controls.,supported,matched-control plating entry is directly observable
