@@ -1,16 +1,17 @@
 # PyBaMM Aging Bridge
 
-> Audit-first PyBaMM workflows for mapping lithium-ion battery aging mechanisms
-> to diagnostic-protocol observables and fitting-target hierarchies.
+> PyBaMM-based workflows for linking lithium-ion battery aging mechanisms
+> to measurable diagnostic features and validation-oriented test protocols.
 
 This project asks one question:
 
-> **Which observable features should be used as fitting targets for which aging mechanisms?**
+> **Which measurable battery-test features provide reliable evidence for which aging mechanisms?**
 
-It does not start from an assumed SOH value. Instead, it perturbs interpretable
-DFN-level physical pathways and audits how they project into measurement-accessible
-diagnostic descriptors — HPPC pulse resistance, biexponential relaxation,
-low-rate pseudo-OCV, GITT-like reconstruction, ICA/DVA, and capacity RPT.
+The project does not start from an assumed SOH value. Instead, it perturbs
+interpretable DFN-level physical pathways and evaluates how these mechanisms
+appear in measurement-accessible diagnostic descriptors, including HPPC pulse
+resistance, biexponential relaxation, low-rate pseudo-OCV, GITT-like
+reconstruction, ICA/DVA, and capacity RPT.
 
 ---
 
