@@ -1,0 +1,5 @@
+diagnostic_layer,planned_feature_group,required_features,primary_risk,minimum_acceptance_condition
+C25_VQ,central-window voltage drift,central_mean_delta_U_mV; central_median_delta_U_mV; central_max_abs_delta_U_mV; endpoint_amplification_flag,endpoint_amplification,Matched central-window voltage signal detected and not endpoint-only.
+GITT_like_finite_rest,finite-rest voltage offset,finite_rest_delta_U_mV; rest_time_s; state_point_Q_or_SOC; relaxation_drift_flag,rest-duration sensitivity,Matched finite-rest voltage signal persists under defined rest-time window.
+ICA,central incremental-capacity features,ICA_peak_shift_central; ICA_area_delta_central; signal_to_smoothing_ratio; direction_consistency,smoothing_sensitivity,Central ICA feature passes smoothing-stability and matched-control checks.
+DVA,central differential-voltage features,DVA_median_central_delta; DVA_peak_shift_central; DVA_area_delta_central; signal_to_smoothing_ratio; direction_consistency,smoothing_sensitivity,Central DVA feature passes smoothing-stability and matched-control checks.

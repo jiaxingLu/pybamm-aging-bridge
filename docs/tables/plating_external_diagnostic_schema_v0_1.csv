@@ -1,0 +1,19 @@
+column_name,dtype,required,description,example
+condition_id,string,True,Condition identifier from the matched-control registry.,plating_10C_2C
+control_condition_id,string,True,Matched no-plating control condition. Empty only for control rows.,no_plating_10C_2C
+matched_pair_id,string,True,Matched pair identifier shared by plating-enabled and no-plating control branches.,pair_10C_2C
+diagnostic_layer,category,True,Diagnostic layer being evaluated.,C25_VQ
+feature_name,string,True,Name of extracted diagnostic feature.,central_mean_delta_U
+feature_value,float,True,Feature value for the current condition.,-2.35
+feature_unit,string,True,Unit of the feature value.,mV
+matched_delta,float,True,Plating-enabled feature minus matched no-plating control feature.,-1.12
+matched_delta_unit,string,True,Unit of matched_delta.,mV
+window_definition,string,True,State / voltage / time window used for feature extraction.,central_Q_window_20_80pct
+preprocessing_setting,string,True,"Smoothing, interpolation, resampling, or derivative preprocessing setting.",savgol_window_31_poly3
+endpoint_amplification_flag,bool,True,Whether the observed signal is dominated by endpoint or cutoff-boundary region.,False
+smoothing_stability_status,category,True,Stability of feature across smoothing / preprocessing variants.,stable / unstable / not_applicable
+protocol_sensitivity_status,category,True,Whether the feature appears protocol-sensitive under the current audit.,unknown / acceptable / sensitive
+feature_status,category,True,Feature-level result status before mechanism-level interpretation.,detected / weak / rejected / deferred
+claim_level,category,True,Claim ladder level supported by this feature.,Level 1
+boundary_flag,string,True,"Boundary warning if the feature is endpoint-sensitive, smoothing-sensitive, weak, or execution-limited.",weak_matched_delta
+notes,string,False,Free-text notes for audit context.,Central-window signal weak; endpoint region excluded.
