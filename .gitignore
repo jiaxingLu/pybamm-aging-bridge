@@ -15,3 +15,6 @@ sims/*
 # Process-isolated plating HPPC intermediate outputs
 data/plating_hppc_process_isolated/
 data/plating_26B_*.csv
+
+# Local traceability outputs for plating external diagnostic Stage 1
+data/plating_external_stage1_stress/
